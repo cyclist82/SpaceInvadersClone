@@ -17,7 +17,7 @@ public class InputHandler {
 
     public void onKeyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
-            this.model.resetCounter();
+            this.model.fireLaser();
         }
         if (event.getCode() == KeyCode.LEFT) {
             this.model.spaceshipPlayerLeft();
@@ -35,7 +35,7 @@ public class InputHandler {
 
     public void onKeyReleased(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
-            this.model.resetCounter();
+//            this.model.resetCounter();
         }
     }
 

@@ -1,6 +1,7 @@
 package de.awacademy.invaders;
 
 import de.awacademy.invaders.model.Model;
+import de.awacademy.invaders.model.SpaceshipEnemy;
 import javafx.animation.AnimationTimer;
 
 public class Timer extends AnimationTimer {
@@ -19,13 +20,14 @@ public class Timer extends AnimationTimer {
     public void handle(long now) {
         long millis = now / 1000000;
         // Unterschied seit letztes Grafik-Ausgabe berechnen
-        long deltaMillis=0;
+        long deltaMillis = 0;
         if (lastMillis != -1) {
-            deltaMillis=millis-lastMillis;
+            deltaMillis = millis - lastMillis;
         }
         lastMillis = millis;
         this.model.update(deltaMillis);
-
+        this.model.enemyFleetMovement();
+        this.model.laserMovement();
         //Grafik soll gezeichnet werden
         graphics.draw();
     }

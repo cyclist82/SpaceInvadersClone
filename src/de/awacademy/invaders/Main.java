@@ -29,11 +29,12 @@ public class Main extends Application {
         primaryStage.show();
 
         Model model = new Model();
+        model.createEnemyFleet(3);
         Graphics graphics = new Graphics(model, canvas.getGraphicsContext2D());
         timer = new Timer(model, graphics);
 
         // InputHandler
-        InputHandler inputHandler=new InputHandler(model);
+        InputHandler inputHandler = new InputHandler(model);
 
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
