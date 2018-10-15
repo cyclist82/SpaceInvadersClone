@@ -1,7 +1,6 @@
 package de.awacademy.invaders;
 
 import de.awacademy.invaders.model.Model;
-import de.awacademy.invaders.model.SpaceshipEnemy;
 import javafx.animation.AnimationTimer;
 
 public class Timer extends AnimationTimer {
@@ -27,7 +26,9 @@ public class Timer extends AnimationTimer {
         lastMillis = millis;
         this.model.update(deltaMillis);
         this.model.enemyFleetMovement();
-        this.model.laserMovement();
+        this.model.laserPlayerMovement();
+        this.model.laserEnemyMovement();
+        this.model.enemyFleetFireLaser();
         //Grafik soll gezeichnet werden
         graphics.draw();
     }

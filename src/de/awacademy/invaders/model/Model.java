@@ -4,26 +4,17 @@ import de.awacademy.invaders.Main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Model {
 
     private int counter = 0;
     // Array Raumschiffe Gegner
-    List<SpaceshipEnemy> enemyList = new ArrayList<>();
-    List<Laser> laserList = new ArrayList<Laser>();
+    private List<SpaceshipEnemy> enemyList = new ArrayList<>();
+    private List<Laser> laserPlayerList = new ArrayList<Laser>();
+    private List<Laser> laserEnemyList = new ArrayList<Laser>();
 
     SpaceshipPlayer spaceshipPlayer = new SpaceshipPlayer(Main.WIDTH / 2, 600);
-
-
-    public void spaceshipPlayerLeft() {
-        if (spaceshipPlayer.getPosX() > 0) {
-            spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() - 10);
-        }
-    }
-
-    public void newSpaceshipEnemy(double posX, double posY) {
-        enemyList.add(new SpaceshipEnemy(posY, posX));
-    }
 
     public void createEnemyFleet(int rows) {
         for (int row = 1; row <= rows; row++) {
@@ -48,29 +39,54 @@ public class Model {
         }
     }
 
+    // Laser der Gegner Flotte feuern
+    public void enemyFleetFireLaser() {
+        if (counter % 150 == 0) {
+            int position = (int) (Math.random() * enemyList.size());
+            laserEnemyList.add(new Laser(enemyList.get(position).getPosX(), enemyList.get(position).getPosY()));
+        }
+    }
+
+    // Rückgabe der aktuell geschossenen Gegner Laser
+    public List<Laser> getLaserEnemyList() {
+        return laserEnemyList;
+    }
+
+    // Gegner Laser bewegung
+    public void laserEnemyMovement() {
+        for (Laser laser : laserEnemyList) {
+            laser.setPosY(laser.getPosY() + laser.getSpeed());
+        }
+    }
+
+    // List der Gegner
     public List<SpaceshipEnemy> getEnemyList() {
         return enemyList;
     }
 
-    public List<Laser> getLaserList() {
-        return laserList;
+    // Ausgabe Liste der Player-Laser
+    public List<Laser> getPlayerLaserList() {
+        return laserPlayerList;
     }
 
-    public void fireLaser() {
-        laserList.add(new Laser(spaceshipPlayer.getPosX()+20, spaceshipPlayer.getPosY()));
+    // Feuer eines Player-Lasers
+    public void fireLaserPlayer() {
+        laserPlayerList.add(new Laser(spaceshipPlayer.getPosX() + 20, spaceshipPlayer.getPosY()));
     }
 
-    public void laserMovement() {
-        for (Laser laser : laserList) {
+    // Bewegung der Player Laser
+    public void laserPlayerMovement() {
+        for (Laser laser : laserPlayerList) {
             laser.setPosY(laser.getPosY() - laser.getSpeed());
-
         }
     }
 
+    // Rückgabe des Counters
     public int getCounter() {
         return counter;
     }
 
+    // Update des Counters
     public void update(long deltaMillis) {
         counter += deltaMillis;
     }
@@ -82,6 +98,13 @@ public class Model {
 
     public SpaceshipPlayer getSpaceshipPlayer() {
         return spaceshipPlayer;
+    }
+
+    // Bewegungen des Spielers durch Cursoreingabe
+    public void spaceshipPlayerLeft() {
+        if (spaceshipPlayer.getPosX() > 0) {
+            spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() - 10);
+        }
     }
 
     public void spaceshipPlayerRight() {
@@ -101,14 +124,4 @@ public class Model {
             spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() + 10);
         }
     }
-
-    public void spaceshipPlayerUpRight() {
-        if (spaceshipPlayer.getPosY() > 0) {
-            spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() - 10);
-        }
-        if (spaceshipPlayer.getPosX() < Main.WIDTH - 80) {
-            spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() + 10);
-        }
-    }
-
 }

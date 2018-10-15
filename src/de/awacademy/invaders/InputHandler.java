@@ -17,7 +17,7 @@ public class InputHandler {
 
     public void onKeyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
-            this.model.fireLaser();
+            this.model.fireLaserPlayer();
         }
         if (event.getCode() == KeyCode.LEFT) {
             this.model.spaceshipPlayerLeft();
@@ -31,6 +31,9 @@ public class InputHandler {
         if (event.getCode() == KeyCode.DOWN) {
             this.model.spaceshipPlayerDown();
         }
+        if (event.getCode() == KeyCode.S) {
+            this.model.enemyFleetFireLaser();
+        }
     }
 
     public void onKeyReleased(KeyEvent event) {
@@ -39,7 +42,6 @@ public class InputHandler {
         }
     }
 
-    public void onClick(MouseEvent event) {
-        model.newSpaceshipEnemy(event.getX(), event.getY());
-    }
+//    public void onClick(MouseEvent event) {
+//    }
 }

@@ -49,12 +49,12 @@ public class Main extends Application {
             }
         });
 
-        canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                inputHandler.onClick(event);
-            }
-        });
+//        canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                inputHandler.onClick(event);
+//            }
+//        });
         // Timer starten
         timer.start();
     }
