@@ -8,9 +8,10 @@ import java.util.LinkedList;
 public class Model {
 
     private boolean up, down, left, right;
+    private boolean enemyMovingRight;
     private int points = 0;
     private int counter = 0;
-    private long lastShot=-140;
+    private long lastShot = -140;
     // Array Raumschiffe Gegner
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
     private LinkedList<Laser> laserPlayerList = new LinkedList<Laser>();
@@ -30,7 +31,7 @@ public class Model {
     // Bewegung der Gegner Flotte
     public void enemyFleetMovement() {
         for (SpaceshipEnemy enemy : enemyList) {
-            if (counter / 4200 % 2 == 0) {
+            if (enemyMovingRight) {
                 enemy.setPosX(enemy.getPosX() + 2.5);
             } else {
                 enemy.setPosX(enemy.getPosX() - 2.5);
@@ -39,6 +40,12 @@ public class Model {
                 enemy.setPosY(enemy.getPosY() + 0.4);
             } else {
                 enemy.setPosY(enemy.getPosY() - 0.2);
+            }
+            if (enemy.getPosX() > Main.WIDTH - 50) {
+                enemyMovingRight=false;
+            }
+            if(enemy.getPosX()<30){
+                enemyMovingRight=true;
             }
         }
     }
