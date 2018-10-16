@@ -4,8 +4,12 @@ import de.awacademy.invaders.model.Explosion;
 import de.awacademy.invaders.model.Laser;
 import de.awacademy.invaders.model.Model;
 import de.awacademy.invaders.model.SpaceshipEnemy;
+import javafx.css.Size;
+import javafx.css.SizeUnits;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,6 +18,9 @@ public class Graphics {
 
     private Model model;
     private GraphicsContext gc;
+    private Image enemySpaceshipImage=new Image("de/awacademy/invaders/model/images/EnemySpaceship.png");
+    private Image playerSpaceshipImage=new Image("de/awacademy/invaders/model/images/SpaceShipPlayer.png");
+    private Image explosionImage=new Image("de/awacademy/invaders/model/images/explosion.png");
 
     public Graphics(Model model, GraphicsContext gc) {
         this.model = model;
@@ -25,17 +32,18 @@ public class Graphics {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, 1200, 750);
 
-        gc.setFill(Color.WHITE);
-        gc.fillText("Hallo Welt " + model.getCounter() + " Punktestand: " + model.getPoints() + " Spiele Leben: " + model.getSpaceshipPlayer().getLives(), 30, 30);
+        gc.setFill(Color.RED);
+        gc.setFont(new Font(50));
+        gc.fillText("Punktestand: " + model.getPoints() + " Spiele Leben: " + model.getSpaceshipPlayer().getLives(), 30, 70);
         for (SpaceshipEnemy spaceshipEnemy : model.getEnemyList()) {
-            gc.drawImage(spaceshipEnemy.getImage(), spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), 30, 30);
+            gc.drawImage(enemySpaceshipImage, spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), 30, 30);
         }
         for (Explosion explosion:model.getExplosions()){
-            gc.drawImage(explosion.getImage(),explosion.getPosX() ,explosion.getPosY(), 30,30 );
+            gc.drawImage(explosionImage,explosion.getPosX() ,explosion.getPosY(), 30,30 );
         }
         laserGraphics(model.getPlayerLaserList());
         laserGraphics(model.getLaserEnemyList());
-        gc.drawImage(model.getSpaceshipPlayer().getImage(), model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), 40, 40);
+        gc.drawImage(playerSpaceshipImage, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), 40, 40);
     }
 
 

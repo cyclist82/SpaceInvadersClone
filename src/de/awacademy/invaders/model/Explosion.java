@@ -6,7 +6,7 @@ public class Explosion {
 
     private Image image = new Image("de/awacademy/invaders/model/images/explosion.png");
     private double posX, posY, timeCreated;
-    private double timeAlive = 500;
+    private double timeAlive = 800;
     private boolean alive = true;
 
     public Explosion(double posY, double posX, double timeCreated) {
