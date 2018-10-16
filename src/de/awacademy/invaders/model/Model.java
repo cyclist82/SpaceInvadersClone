@@ -8,19 +8,28 @@ import java.util.LinkedList;
 
 public class Model {
 
-    private boolean up, down, left, right, spaceKey;
+    private int gameStatus = 0;
+    private boolean up, down, left, right, spaceKey,anyKey, enterKey;
     private boolean enemyMovingRight;
     private int points = 0;
     private int counter = 0;
-    private long lastShot = -140;
+    private long lastShotPlayer = -140;
     // Array Raumschiffe Gegner
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
     private LinkedList<Laser> laserPlayerList = new LinkedList<Laser>();
     private LinkedList<Laser> laserEnemyList = new LinkedList<Laser>();
     private LinkedList<Explosion> explosions = new LinkedList<>();
 
-    Sounds sounds=new Sounds();
+    Sounds sounds = new Sounds();
     SpaceshipPlayer spaceshipPlayer = new SpaceshipPlayer(Main.WIDTH / 2, 600);
+
+    public void gameStatus() {
+        if (gameStatus == 0) {
+            if (anyKey == true) {
+                gameStatus = 1;
+            }
+        }
+    }
 
     public void createEnemyFleet(int rows) {
         for (int row = 1; row <= rows; row++) {
@@ -29,6 +38,7 @@ public class Model {
             }
         }
     }
+
 
     // Bewegung der Gegner Flotte
     public void enemyFleetMovement(long deltaMillis) {
@@ -39,9 +49,9 @@ public class Model {
                 enemy.setPosX(enemy.getPosX() - deltaMillis / 6);
             }
             if (counter / 3500 % 2 == 0) {
-                enemy.setPosY(enemy.getPosY() + deltaMillis / 18);
+                enemy.setPosY(enemy.getPosY() + deltaMillis / 17);
             } else {
-                enemy.setPosY(enemy.getPosY() - deltaMillis / 21);
+                enemy.setPosY(enemy.getPosY() - deltaMillis / 20);
             }
             if (enemy.getPosX() > Main.WIDTH - 50) {
                 enemyMovingRight = false;
@@ -93,14 +103,17 @@ public class Model {
         for (SpaceshipEnemy enemy : enemyList) {
             for (Laser laser : laserPlayerList) {
                 if (laser.getPosY() - 20 <= enemy.getPosY() && laser.getPosY() - 20 >= enemy.getPosY() - 30 && laser.getPosX() + 2.5 <= enemy.getPosX() + 30 && laser.getPosX() + 2.5 >= enemy.getPosX()) {
-                    enemy.setAlive(false);
+                    enemy.setLives(enemy.getLives() - 1);
                     laser.setAlive(false);
                     createExplosion(enemy.getPosY(), enemy.getPosX());
                     points++;
+                    if (enemy.getLives() == 0) {
+                        sounds.playEnemyKiller();
+                    }
                 }
             }
         }
-        enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.isAlive() == false);
+        enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getLives() == 0);
         laserPlayerList.removeIf(laser -> laser.isAlive() == false);
     }
 
@@ -110,6 +123,7 @@ public class Model {
             if (laser.getPosY() >= spaceshipPlayer.getPosY() && laser.getPosY() <= spaceshipPlayer.getPosY() + 40 && laser.getPosX() >= spaceshipPlayer.getPosX() && laser.getPosX() <= spaceshipPlayer.getPosX() + 40) {
                 spaceshipPlayer.setLives(spaceshipPlayer.getLives() - 1);
                 laser.setAlive(false);
+                sounds.playPlayerisHit();
             }
         }
         laserEnemyList.removeIf(laser -> laser.isAlive() == false);
@@ -120,10 +134,13 @@ public class Model {
         for (SpaceshipEnemy enemy : enemyList) {
             if (enemy.getPosY() >= spaceshipPlayer.getPosY() - 28 && enemy.getPosY() <= spaceshipPlayer.getPosY() + 28 && enemy.getPosX() >= spaceshipPlayer.getPosX() - 28 && enemy.getPosX() <= spaceshipPlayer.getPosX() + 28) {
                 spaceshipPlayer.setLives(spaceshipPlayer.getLives() - 1);
-                enemy.setAlive(false);
+                enemy.setLives(0);
+                if (enemy.getLives() == 0) {
+                    sounds.playEnemyKiller();
+                }
             }
         }
-        enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.isAlive() == false);
+        enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getLives() == 0);
     }
 
     // Ausgabe Liste der Player-Laser
@@ -134,9 +151,9 @@ public class Model {
     // Feuer eines Player-Lasers
     public void fireLaserPlayer() {
         if (spaceKey) {
-            if (lastShot + 500 <= counter) {
+            if (lastShotPlayer + 500 <= counter) {
                 laserPlayerList.add(new Laser(spaceshipPlayer.getPosX() + 20, spaceshipPlayer.getPosY()));
-                lastShot = counter;
+                lastShotPlayer = counter;
                 sounds.shootLaser();
             }
         }
@@ -158,16 +175,19 @@ public class Model {
     // Update des Counters
     public void update(long deltaMillis) {
         counter += deltaMillis;
-        enemyFleetMovement(deltaMillis);
-        laserPlayerMovement(deltaMillis);
-        laserEnemyMovement(deltaMillis);
-        enemyFleetFireLaser();
-        fireLaserPlayer();
-        laserPlayerDestroyEnemy();
-        laserEnemyHitPlayer();
-        playerHitsEnemy();
-        deleteExplosion();
-        playerMovement(deltaMillis);
+        gameStatus();
+        if (gameStatus == 1) {
+            enemyFleetMovement(deltaMillis);
+            laserPlayerMovement(deltaMillis);
+            laserEnemyMovement(deltaMillis);
+            enemyFleetFireLaser();
+            fireLaserPlayer();
+            laserPlayerDestroyEnemy();
+            laserEnemyHitPlayer();
+            playerHitsEnemy();
+            deleteExplosion();
+            playerMovement(deltaMillis);
+        }
     }
 
 
@@ -222,5 +242,21 @@ public class Model {
 
     public void setSpaceKey(boolean spaceKey) {
         this.spaceKey = spaceKey;
+    }
+
+    public int getGameStatus() {
+        return gameStatus;
+    }
+
+    public void setGameStatus(int gameStatus) {
+        this.gameStatus = gameStatus;
+    }
+
+    public void setAnyKey(boolean anyKey) {
+        this.anyKey = anyKey;
+    }
+
+    public void setEnterKey(boolean enterKey) {
+        this.enterKey = enterKey;
     }
 }

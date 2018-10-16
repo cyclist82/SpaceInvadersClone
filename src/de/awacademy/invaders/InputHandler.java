@@ -17,6 +17,10 @@ public class InputHandler {
     }
 
     public void onKeyPressed(KeyEvent event) {
+            this.model.setAnyKey(true);
+        if (event.getCode() == KeyCode.ENTER) {
+            this.model.setEnterKey(true);
+        }
         if (event.getCode() == KeyCode.SPACE) {
             this.model.setSpaceKey(true);
         }
@@ -38,6 +42,9 @@ public class InputHandler {
     }
 
     public void onKeyReleased(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            this.model.setEnterKey(false);
+        }
         if (event.getCode() == KeyCode.SPACE) {
             this.model.setSpaceKey(false);
         }
