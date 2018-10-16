@@ -10,6 +10,7 @@ public class Model {
     private boolean up, down, left, right;
     private int points = 0;
     private int counter = 0;
+    private long lastShot=-140;
     // Array Raumschiffe Gegner
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
     private LinkedList<Laser> laserPlayerList = new LinkedList<Laser>();
@@ -122,7 +123,10 @@ public class Model {
 
     // Feuer eines Player-Lasers
     public void fireLaserPlayer() {
-        laserPlayerList.add(new Laser(spaceshipPlayer.getPosX() + 20, spaceshipPlayer.getPosY()));
+        if (lastShot + 140 < counter) {
+            laserPlayerList.add(new Laser(spaceshipPlayer.getPosX() + 20, spaceshipPlayer.getPosY()));
+        }
+        lastShot = counter;
     }
 
     // Bewegung der Player Laser
@@ -149,7 +153,7 @@ public class Model {
         laserEnemyHitPlayer();
         playerHitsEnemy();
         deleteExplosion();
-        playerMovement();
+        playerMovement(deltaMillis);
     }
 
 
@@ -162,18 +166,18 @@ public class Model {
     }
 
     // Bewegungen des Spielers durch Cursoreingabe
-    public void playerMovement() {
+    public void playerMovement(long deltaMillis) {
         if (left && spaceshipPlayer.getPosX() > 0) {
-            spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() - 10);
+            spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() - deltaMillis / 3);
         }
         if (right && spaceshipPlayer.getPosX() < Main.WIDTH - 80) {
-            spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() + 10);
+            spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() + deltaMillis / 3);
         }
         if (up && spaceshipPlayer.getPosY() > 0) {
-            spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() - 10);
+            spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() - deltaMillis / 3);
         }
         if (down && spaceshipPlayer.getPosY() < Main.HEIGTH - 80) {
-            spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() + 10);
+            spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() + deltaMillis / 3);
         }
     }
 
