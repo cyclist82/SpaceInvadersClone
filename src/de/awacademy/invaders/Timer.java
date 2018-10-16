@@ -7,12 +7,14 @@ public class Timer extends AnimationTimer {
 
     private Model model;
     private Graphics graphics;
+//    private Sounds sounds;
 
     long lastMillis = -1;
 
     public Timer(Model model, Graphics graphics) {
         this.model = model;
         this.graphics = graphics;
+//        this.sounds = sounds;
     }
 
     @Override

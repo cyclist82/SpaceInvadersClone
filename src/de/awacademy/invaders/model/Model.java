@@ -1,13 +1,14 @@
 package de.awacademy.invaders.model;
 
 import de.awacademy.invaders.Main;
+import de.awacademy.invaders.Sounds;
 
 import java.util.LinkedList;
 
 
 public class Model {
 
-    private boolean up, down, left, right;
+    private boolean up, down, left, right, spaceKey;
     private boolean enemyMovingRight;
     private int points = 0;
     private int counter = 0;
@@ -18,6 +19,7 @@ public class Model {
     private LinkedList<Laser> laserEnemyList = new LinkedList<Laser>();
     private LinkedList<Explosion> explosions = new LinkedList<>();
 
+    Sounds sounds=new Sounds();
     SpaceshipPlayer spaceshipPlayer = new SpaceshipPlayer(Main.WIDTH / 2, 600);
 
     public void createEnemyFleet(int rows) {
@@ -29,23 +31,23 @@ public class Model {
     }
 
     // Bewegung der Gegner Flotte
-    public void enemyFleetMovement() {
+    public void enemyFleetMovement(long deltaMillis) {
         for (SpaceshipEnemy enemy : enemyList) {
             if (enemyMovingRight) {
-                enemy.setPosX(enemy.getPosX() + 2.5);
+                enemy.setPosX(enemy.getPosX() + deltaMillis / 6);
             } else {
-                enemy.setPosX(enemy.getPosX() - 2.5);
+                enemy.setPosX(enemy.getPosX() - deltaMillis / 6);
             }
             if (counter / 3500 % 2 == 0) {
-                enemy.setPosY(enemy.getPosY() + 0.4);
+                enemy.setPosY(enemy.getPosY() + deltaMillis / 18);
             } else {
-                enemy.setPosY(enemy.getPosY() - 0.2);
+                enemy.setPosY(enemy.getPosY() - deltaMillis / 21);
             }
             if (enemy.getPosX() > Main.WIDTH - 50) {
-                enemyMovingRight=false;
+                enemyMovingRight = false;
             }
-            if(enemy.getPosX()<30){
-                enemyMovingRight=true;
+            if (enemy.getPosX() < 30) {
+                enemyMovingRight = true;
             }
         }
     }
@@ -64,6 +66,7 @@ public class Model {
         if (counter % 150 < 5 && counter % 150 > 2 && enemyList.size() > 0) {
             int position = (int) (Math.random() * enemyList.size());
             laserEnemyList.add(new Laser(enemyList.get(position).getPosX() + 15, enemyList.get(position).getPosY() + 30));
+            sounds.shootLaser();
         }
     }
 
@@ -73,9 +76,9 @@ public class Model {
     }
 
     // Gegner Laser bewegung
-    public void laserEnemyMovement() {
+    public void laserEnemyMovement(long deltaMillis) {
         for (Laser laser : laserEnemyList) {
-            laser.setPosY(laser.getPosY() + laser.getSpeed());
+            laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed());
         }
         laserEnemyList.removeIf(laser -> laser.getPosY() >= Main.HEIGTH);
     }
@@ -130,16 +133,19 @@ public class Model {
 
     // Feuer eines Player-Lasers
     public void fireLaserPlayer() {
-        if (lastShot + 140 < counter) {
-            laserPlayerList.add(new Laser(spaceshipPlayer.getPosX() + 20, spaceshipPlayer.getPosY()));
+        if (spaceKey) {
+            if (lastShot + 500 <= counter) {
+                laserPlayerList.add(new Laser(spaceshipPlayer.getPosX() + 20, spaceshipPlayer.getPosY()));
+                lastShot = counter;
+                sounds.shootLaser();
+            }
         }
-        lastShot = counter;
     }
 
     // Bewegung der Player Laser
-    public void laserPlayerMovement() {
+    public void laserPlayerMovement(long deltaMillis) {
         for (Laser laser : laserPlayerList) {
-            laser.setPosY(laser.getPosY() - laser.getSpeed());
+            laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed());
         }
         laserPlayerList.removeIf(laser -> laser.getPosY() <= -10);
     }
@@ -152,10 +158,11 @@ public class Model {
     // Update des Counters
     public void update(long deltaMillis) {
         counter += deltaMillis;
-        enemyFleetMovement();
-        laserPlayerMovement();
-        laserEnemyMovement();
+        enemyFleetMovement(deltaMillis);
+        laserPlayerMovement(deltaMillis);
+        laserEnemyMovement(deltaMillis);
         enemyFleetFireLaser();
+        fireLaserPlayer();
         laserPlayerDestroyEnemy();
         laserEnemyHitPlayer();
         playerHitsEnemy();
@@ -211,5 +218,9 @@ public class Model {
 
     public void setRight(boolean right) {
         this.right = right;
+    }
+
+    public void setSpaceKey(boolean spaceKey) {
+        this.spaceKey = spaceKey;
     }
 }

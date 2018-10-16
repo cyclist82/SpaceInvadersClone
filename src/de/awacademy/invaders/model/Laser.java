@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 
 public class Laser {
     private double posX,posY;
-    private double speed=8;
+    private double speed=0.5;
     private double width=3;
     private double length=5;
     private Color color=Color.RED;

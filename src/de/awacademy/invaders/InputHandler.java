@@ -17,26 +17,8 @@ public class InputHandler {
     }
 
     public void onKeyPressed(KeyEvent event) {
-//        if (event.getCode() == KeyCode.SPACE) {
-//            this.model.fireLaserPlayer();
-//        }
-//        if (event.getCode() == KeyCode.LEFT) {
-//            this.model.spaceshipPlayerLeft();
-//        }
-//        if (event.getCode() == KeyCode.RIGHT) {
-//            this.model.spaceshipPlayerRight();
-//        }
-//        if (event.getCode() == KeyCode.UP) {
-//            this.model.spaceshipPlayerUp();
-//        }
-//        if (event.getCode() == KeyCode.DOWN) {
-//            this.model.spaceshipPlayerDown();
-//        }
-//        if (event.getCode() == KeyCode.N) {
-//            this.model.createEnemyFleet(3);
-//        }
         if (event.getCode() == KeyCode.SPACE) {
-            this.model.fireLaserPlayer();
+            this.model.setSpaceKey(true);
         }
         if (event.getCode() == KeyCode.LEFT) {
             this.model.setLeft(true);
@@ -57,7 +39,7 @@ public class InputHandler {
 
     public void onKeyReleased(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
-            this.model.fireLaserPlayer();
+            this.model.setSpaceKey(false);
         }
         if (event.getCode() == KeyCode.LEFT) {
             this.model.setLeft(false);

@@ -4,14 +4,11 @@ import de.awacademy.invaders.model.Explosion;
 import de.awacademy.invaders.model.Laser;
 import de.awacademy.invaders.model.Model;
 import de.awacademy.invaders.model.SpaceshipEnemy;
-import javafx.css.Size;
-import javafx.css.SizeUnits;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Graphics {
