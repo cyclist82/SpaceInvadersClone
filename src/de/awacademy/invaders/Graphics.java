@@ -25,7 +25,7 @@ public class Graphics {
         gc.setFill(Color.WHITE);
         gc.fillText("Hallo Welt " + model.getCounter() + " Punktestand: " + model.getPoints() + " Spiele Leben: " + model.getSpaceshipPlayer().getLives(), 30, 30);
         for (SpaceshipEnemy spaceshipEnemy : model.getEnemyList()) {
-            gc.drawImage(spaceshipEnemy.getImage(), spaceshipEnemy.getPosX() - 15, spaceshipEnemy.getPosY() - 15, 30, 30);
+            gc.drawImage(spaceshipEnemy.getImage(), spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), 30, 30);
         }
         laserGraphics(model.getPlayerLaserList());
         laserGraphics(model.getLaserEnemyList());

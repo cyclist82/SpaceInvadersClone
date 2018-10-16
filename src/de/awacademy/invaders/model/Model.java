@@ -44,9 +44,9 @@ public class Model {
 
     // Laser der Gegner Flotte feuern
     public void enemyFleetFireLaser() {
-        if (counter % 150 < 5 && counter % 150 > 2) {
+        if (counter % 150 < 5 && counter % 150 > 2 && enemyList.size() > 0) {
             int position = (int) (Math.random() * enemyList.size());
-            laserEnemyList.add(new Laser(enemyList.get(position).getPosX(), enemyList.get(position).getPosY()));
+            laserEnemyList.add(new Laser(enemyList.get(position).getPosX()+15, enemyList.get(position).getPosY()+30));
         }
     }
 
@@ -71,7 +71,7 @@ public class Model {
     public void laserPlayerDestroyEnemy() {
         for (SpaceshipEnemy enemy : enemyList) {
             for (Laser laser : laserPlayerList) {
-                if (laser.getPosY() <= enemy.getPosY() && laser.getPosY() >= enemy.getPosY() - 30 && laser.getPosX() <= enemy.getPosX() + 30 && laser.getPosX() >= enemy.getPosX()) {
+                if (laser.getPosY()-20 <= enemy.getPosY() && laser.getPosY()-20 >= enemy.getPosY() - 30 && laser.getPosX()+2.5 <= enemy.getPosX() + 30 && laser.getPosX()+2.5 >= enemy.getPosX()) {
                     enemy.setAlive(false);
                     laser.setAlive(false);
                     points++;
@@ -84,7 +84,7 @@ public class Model {
 
     public void laserEnemyHitPlayer() {
         for (Laser laser : laserEnemyList) {
-            if (laser.getPosY() >= spaceshipPlayer.getPosY() && laser.getPosY() <= spaceshipPlayer.getPosY() + 40 && laser.getPosX() >= spaceshipPlayer.getPosX() && laser.getPosX() <= spaceshipPlayer.getPosX()+40) {
+            if (laser.getPosY() >= spaceshipPlayer.getPosY() && laser.getPosY() <= spaceshipPlayer.getPosY() + 40 && laser.getPosX() >= spaceshipPlayer.getPosX() && laser.getPosX() <= spaceshipPlayer.getPosX() + 40) {
                 spaceshipPlayer.setLives(spaceshipPlayer.getLives() - 1);
                 laser.setAlive(false);
             }
@@ -92,6 +92,15 @@ public class Model {
         laserEnemyList.removeIf(laser -> laser.isAlive() == false);
     }
 
+    public void playerHitsEnemy() {
+        for (SpaceshipEnemy enemy : enemyList) {
+            if (enemy.getPosY() >= spaceshipPlayer.getPosY() - 30 && enemy.getPosY() <= spaceshipPlayer.getPosY() + 30 && enemy.getPosX() >= spaceshipPlayer.getPosX() - 30 && enemy.getPosX() <= spaceshipPlayer.getPosX() + 30) {
+                spaceshipPlayer.setLives(spaceshipPlayer.getLives() - 1);
+                enemy.setAlive(false);
+            }
+        }
+        enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.isAlive() == false);
+    }
 
     // Ausgabe Liste der Player-Laser
     public ArrayList<Laser> getPlayerLaserList() {
@@ -125,6 +134,7 @@ public class Model {
         enemyFleetFireLaser();
         laserPlayerDestroyEnemy();
         laserEnemyHitPlayer();
+        playerHitsEnemy();
     }
 
 
