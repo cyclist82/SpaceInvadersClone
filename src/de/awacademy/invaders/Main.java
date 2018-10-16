@@ -10,12 +10,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static final double WIDTH = 1200;
-    public static final double HEIGTH = 750;
+    public static final double WIDTH = 1920;
+    public static final double HEIGTH = 1012;
 
     private Timer timer;
 
@@ -29,9 +30,10 @@ public class Main extends Application {
         Scene scene = new Scene(group);
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setTitle("Leifs Space Invaders");
+        primaryStage.setMaximized(true);
 
         Model model = new Model();
-        model.createEnemyFleet(3);
         Sounds sounds=new Sounds();
         sounds.playBackgroundSong();
         Graphics graphics = new Graphics(model, canvas.getGraphicsContext2D());

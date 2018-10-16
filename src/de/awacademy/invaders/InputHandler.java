@@ -36,12 +36,19 @@ public class InputHandler {
         if (event.getCode() == KeyCode.DOWN) {
             this.model.setDown(true);
         }
+        if (event.getCode() == KeyCode.ESCAPE) {
+            this.model.setEscapeKey(true);
+        }
         if (event.getCode() == KeyCode.N) {
             this.model.createEnemyFleet(3);
         }
     }
 
     public void onKeyReleased(KeyEvent event) {
+        this.model.setAnyKey(false);
+        if (event.getCode() == KeyCode.ESCAPE) {
+            this.model.setEscapeKey(false);
+        }
         if (event.getCode() == KeyCode.ENTER) {
             this.model.setEnterKey(false);
         }

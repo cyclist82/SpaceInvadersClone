@@ -19,6 +19,7 @@ public class Sounds {
     }
 
     public void playBackgroundSong() {
+        backgroundSong.setCycleCount(AudioClip.INDEFINITE);
         backgroundSong.play();
     }
 

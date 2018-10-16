@@ -4,29 +4,61 @@ import de.awacademy.invaders.Main;
 import de.awacademy.invaders.Sounds;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 
 public class Model {
 
     private int gameStatus = 0;
-    private boolean up, down, left, right, spaceKey,anyKey, enterKey;
+    private boolean up, down, left, right, spaceKey, anyKey, enterKey, escapeKey;
+    private boolean pointGlow = false, lifesGlow = false;
     private boolean enemyMovingRight;
-    private int points = 0;
+    private int points = 0, rows = 3, menuItem = 0;
     private int counter = 0;
     private long lastShotPlayer = -140;
-    // Array Raumschiffe Gegner
+    private long timeLastPoint = 0;
+    private long timeLastLifeLost = 0;
+
+    // Array Raumschiffe, Explosionen und Laser
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
     private LinkedList<Laser> laserPlayerList = new LinkedList<Laser>();
     private LinkedList<Laser> laserEnemyList = new LinkedList<Laser>();
     private LinkedList<Explosion> explosions = new LinkedList<>();
 
     Sounds sounds = new Sounds();
+    int random = (int) (Math.random() * 10);
     SpaceshipPlayer spaceshipPlayer = new SpaceshipPlayer(Main.WIDTH / 2, 600);
 
     public void gameStatus() {
         if (gameStatus == 0) {
             if (anyKey == true) {
                 gameStatus = 1;
+                enemyList.clear();
+                laserPlayerList.clear();
+                laserEnemyList.clear();
+                createEnemyFleet(rows);
+            }
+        }
+        if (gameStatus == 1) {
+            if (escapeKey == true) {
+                gameStatus = 0;
+
+            }
+            if (enemyList.isEmpty()) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                gameStatus = 2;
+            }
+            if (spaceshipPlayer.getLives() == 0) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                gameStatus = 3;
             }
         }
     }
@@ -40,8 +72,11 @@ public class Model {
     }
 
 
-    // Bewegung der Gegner Flotte
+    // Bewegung der Gegner Flotte und Löschen falls Außerhalb des Bildschirms
     public void enemyFleetMovement(long deltaMillis) {
+        if (counter / 500 % 12 == random) {
+            enemyMovingRight = !enemyMovingRight;
+        }
         for (SpaceshipEnemy enemy : enemyList) {
             if (enemyMovingRight) {
                 enemy.setPosX(enemy.getPosX() + deltaMillis / 6);
@@ -51,7 +86,7 @@ public class Model {
             if (counter / 3500 % 2 == 0) {
                 enemy.setPosY(enemy.getPosY() + deltaMillis / 17);
             } else {
-                enemy.setPosY(enemy.getPosY() - deltaMillis / 20);
+                enemy.setPosY(enemy.getPosY() - deltaMillis / 19);
             }
             if (enemy.getPosX() > Main.WIDTH - 50) {
                 enemyMovingRight = false;
@@ -60,6 +95,7 @@ public class Model {
                 enemyMovingRight = true;
             }
         }
+        enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getPosY() >= Main.HEIGTH);
     }
 
     // Explosion hinzufügen
@@ -107,11 +143,17 @@ public class Model {
                     laser.setAlive(false);
                     createExplosion(enemy.getPosY(), enemy.getPosX());
                     points++;
+                    timeLastPoint = counter;
                     if (enemy.getLives() == 0) {
                         sounds.playEnemyKiller();
                     }
                 }
             }
+        }
+        if (counter <= timeLastPoint + 200) {
+            pointGlow = true;
+        } else {
+            pointGlow = false;
         }
         enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getLives() == 0);
         laserPlayerList.removeIf(laser -> laser.isAlive() == false);
@@ -124,7 +166,13 @@ public class Model {
                 spaceshipPlayer.setLives(spaceshipPlayer.getLives() - 1);
                 laser.setAlive(false);
                 sounds.playPlayerisHit();
+                timeLastLifeLost = counter;
             }
+        }
+        if (counter <= timeLastLifeLost + 600) {
+            lifesGlow = true;
+        } else {
+            lifesGlow = false;
         }
         laserEnemyList.removeIf(laser -> laser.isAlive() == false);
     }
@@ -137,6 +185,7 @@ public class Model {
                 enemy.setLives(0);
                 if (enemy.getLives() == 0) {
                     sounds.playEnemyKiller();
+                    createExplosion(enemy.getPosY(), enemy.getPosX());
                 }
             }
         }
@@ -204,13 +253,13 @@ public class Model {
         if (left && spaceshipPlayer.getPosX() > 0) {
             spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() - deltaMillis / 3);
         }
-        if (right && spaceshipPlayer.getPosX() < Main.WIDTH - 80) {
+        if (right && spaceshipPlayer.getPosX() < Main.WIDTH - 40) {
             spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() + deltaMillis / 3);
         }
         if (up && spaceshipPlayer.getPosY() > 0) {
             spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() - deltaMillis / 3);
         }
-        if (down && spaceshipPlayer.getPosY() < Main.HEIGTH - 80) {
+        if (down && spaceshipPlayer.getPosY() < Main.HEIGTH - 40) {
             spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() + deltaMillis / 3);
         }
     }
@@ -248,15 +297,23 @@ public class Model {
         return gameStatus;
     }
 
-    public void setGameStatus(int gameStatus) {
-        this.gameStatus = gameStatus;
-    }
-
     public void setAnyKey(boolean anyKey) {
         this.anyKey = anyKey;
     }
 
     public void setEnterKey(boolean enterKey) {
         this.enterKey = enterKey;
+    }
+
+    public void setEscapeKey(boolean escapeKey) {
+        this.escapeKey = escapeKey;
+    }
+
+    public boolean isPointGlow() {
+        return pointGlow;
+    }
+
+    public boolean isLifesGlow() {
+        return lifesGlow;
     }
 }
