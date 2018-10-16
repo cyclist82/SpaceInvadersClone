@@ -44,7 +44,7 @@ public class Model {
 
     // Laser der Gegner Flotte feuern
     public void enemyFleetFireLaser() {
-        if (counter % 150 == 0) {
+        if (counter % 150 < 5 && counter % 150 > 2) {
             int position = (int) (Math.random() * enemyList.size());
             laserEnemyList.add(new Laser(enemyList.get(position).getPosX(), enemyList.get(position).getPosY()));
         }
@@ -82,6 +82,17 @@ public class Model {
         laserPlayerList.removeIf(laser -> laser.isAlive() == false);
     }
 
+    public void laserEnemyHitPlayer() {
+        for (Laser laser : laserEnemyList) {
+            if (laser.getPosY() >= spaceshipPlayer.getPosY() && laser.getPosY() <= spaceshipPlayer.getPosY() + 40 && laser.getPosX() >= spaceshipPlayer.getPosX() && laser.getPosX() <= spaceshipPlayer.getPosX()+40) {
+                spaceshipPlayer.setLives(spaceshipPlayer.getLives() - 1);
+                laser.setAlive(false);
+            }
+        }
+        laserEnemyList.removeIf(laser -> laser.isAlive() == false);
+    }
+
+
     // Ausgabe Liste der Player-Laser
     public ArrayList<Laser> getPlayerLaserList() {
         return laserPlayerList;
@@ -108,6 +119,12 @@ public class Model {
     // Update des Counters
     public void update(long deltaMillis) {
         counter += deltaMillis;
+        enemyFleetMovement();
+        laserPlayerMovement();
+        laserEnemyMovement();
+        enemyFleetFireLaser();
+        laserPlayerDestroyEnemy();
+        laserEnemyHitPlayer();
     }
 
 

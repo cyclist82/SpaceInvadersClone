@@ -25,11 +25,6 @@ public class Timer extends AnimationTimer {
         }
         lastMillis = millis;
         this.model.update(deltaMillis);
-        this.model.enemyFleetMovement();
-        this.model.laserPlayerMovement();
-        this.model.laserEnemyMovement();
-        this.model.enemyFleetFireLaser();
-        this.model.laserPlayerDestroyEnemy();
         //Grafik soll gezeichnet werden
         graphics.draw();
     }
