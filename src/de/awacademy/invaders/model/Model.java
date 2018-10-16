@@ -27,15 +27,15 @@ public class Model {
 
     Sounds sounds = new Sounds();
     int random = (int) (Math.random() * 10);
-    SpaceshipPlayer spaceshipPlayer = new SpaceshipPlayer(Main.WIDTH / 2, 600);
+    SpaceshipPlayer spaceshipPlayer = new SpaceshipPlayer(Main.WIDTH / 2-15, Main.HEIGTH-200);
 
     public void gameStatus() {
         if (gameStatus == 0) {
+            enemyList.clear();
+            laserEnemyList.clear();
+            laserPlayerList.clear();
             if (anyKey == true) {
                 gameStatus = 1;
-                enemyList.clear();
-                laserPlayerList.clear();
-                laserEnemyList.clear();
                 createEnemyFleet(rows);
             }
         }
@@ -46,15 +46,16 @@ public class Model {
             }
             if (enemyList.isEmpty()) {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 gameStatus = 2;
             }
-            if (spaceshipPlayer.getLives() == 0) {
+            if (spaceshipPlayer.getLives() <= 0) {
+                spaceshipPlayer.setLives(0);
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -65,7 +66,7 @@ public class Model {
 
     public void createEnemyFleet(int rows) {
         for (int row = 1; row <= rows; row++) {
-            for (int i = 85; i < Main.WIDTH / 2 + 35; i += 50) {
+            for (int i = 85; i < Main.WIDTH / 2 + 100; i += 50) {
                 enemyList.add(new SpaceshipEnemy(row * 50 - 30, i));
             }
         }
@@ -94,6 +95,9 @@ public class Model {
             if (enemy.getPosX() < 30) {
                 enemyMovingRight = true;
             }
+            if (enemy.getPosY() >= Main.HEIGTH - 20) {
+                gameStatus = 3;
+            }
         }
         enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getPosY() >= Main.HEIGTH);
     }
@@ -109,7 +113,7 @@ public class Model {
 
     // Laser der Gegner Flotte feuern
     public void enemyFleetFireLaser() {
-        if (counter % 150 < 5 && counter % 150 > 2 && enemyList.size() > 0) {
+        if (counter % 110 < 5 && counter % 110 > 2 && enemyList.size() > 0) {
             int position = (int) (Math.random() * enemyList.size());
             laserEnemyList.add(new Laser(enemyList.get(position).getPosX() + 15, enemyList.get(position).getPosY() + 30));
             sounds.shootLaser();
@@ -167,6 +171,7 @@ public class Model {
                 laser.setAlive(false);
                 sounds.playPlayerisHit();
                 timeLastLifeLost = counter;
+                createExplosion(spaceshipPlayer.getPosY(), spaceshipPlayer.getPosX());
             }
         }
         if (counter <= timeLastLifeLost + 600) {
@@ -183,11 +188,17 @@ public class Model {
             if (enemy.getPosY() >= spaceshipPlayer.getPosY() - 28 && enemy.getPosY() <= spaceshipPlayer.getPosY() + 28 && enemy.getPosX() >= spaceshipPlayer.getPosX() - 28 && enemy.getPosX() <= spaceshipPlayer.getPosX() + 28) {
                 spaceshipPlayer.setLives(spaceshipPlayer.getLives() - 1);
                 enemy.setLives(0);
+                timeLastLifeLost = counter;
                 if (enemy.getLives() == 0) {
                     sounds.playEnemyKiller();
                     createExplosion(enemy.getPosY(), enemy.getPosX());
                 }
             }
+        }
+        if (counter <= timeLastLifeLost + 600) {
+            lifesGlow = true;
+        } else {
+            lifesGlow = false;
         }
         enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getLives() == 0);
     }

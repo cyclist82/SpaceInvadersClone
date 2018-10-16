@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 
 public class Explosion {
 
-    private Image image = new Image("de/awacademy/invaders/model/images/explosion.png");
     private double posX, posY, timeCreated;
     private double timeAlive = 800;
     private boolean alive = true;
@@ -17,10 +16,6 @@ public class Explosion {
 
     public double getTimeCreated() {
         return timeCreated;
-    }
-
-    public Image getImage() {
-        return image;
     }
 
     public double getPosX() {

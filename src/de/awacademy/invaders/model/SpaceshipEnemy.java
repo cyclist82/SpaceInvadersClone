@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 public class SpaceshipEnemy {
 
     private double posY,posX;
-    private Image image = new Image("de/awacademy/invaders/model/images/EnemySpaceship.png");
     private int lives=1;
 
     public SpaceshipEnemy(double posY, double posX) {
@@ -29,13 +28,6 @@ public class SpaceshipEnemy {
         this.posX = posX;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
 
     public int getLives() {
         return lives;
