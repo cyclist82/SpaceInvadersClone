@@ -7,15 +7,16 @@ public class InputHandler {
 
 
     private Model model;
-    
+
     // Konstruktor
     public InputHandler(Model model) {
         this.model = model;
     }
 
-
     public void onKeyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
+
+
             this.model.fireLaserPlayer();
         }
         if (event.getCode() == KeyCode.LEFT) {

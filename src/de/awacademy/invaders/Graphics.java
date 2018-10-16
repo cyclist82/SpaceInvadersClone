@@ -1,5 +1,6 @@
 package de.awacademy.invaders;
 
+import de.awacademy.invaders.model.Explosion;
 import de.awacademy.invaders.model.Laser;
 import de.awacademy.invaders.model.Model;
 import de.awacademy.invaders.model.SpaceshipEnemy;
@@ -7,6 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Graphics {
 
@@ -18,6 +20,7 @@ public class Graphics {
         this.gc = gc;
     }
 
+    // Hier wird alles gezeichnet
     public void draw() {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, 1200, 750);
@@ -27,20 +30,17 @@ public class Graphics {
         for (SpaceshipEnemy spaceshipEnemy : model.getEnemyList()) {
             gc.drawImage(spaceshipEnemy.getImage(), spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), 30, 30);
         }
+        for (Explosion explosion:model.getExplosions()){
+            gc.drawImage(explosion.getImage(),explosion.getPosX() ,explosion.getPosY(), 30,30 );
+        }
         laserGraphics(model.getPlayerLaserList());
         laserGraphics(model.getLaserEnemyList());
-//        for (Laser laser : model.getPlayerLaserList()) {
-//            gc.setFill(laser.getColor());
-//            gc.fillRect(laser.getPosX(), laser.getPosY(), laser.getWidth(), laser.getLength());
-//        }
-//        for (Laser laser : model.getLaserEnemyList()) {
-//            gc.setFill(laser.getColor());
-//            gc.fillRect(laser.getPosX(), laser.getPosY(), laser.getWidth(), laser.getLength());
-//        }
         gc.drawImage(model.getSpaceshipPlayer().getImage(), model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), 40, 40);
     }
 
-    public void laserGraphics(ArrayList<Laser> laserList) {
+
+    // Methode um LaserListen zu zeichnen
+    private void laserGraphics(LinkedList<Laser> laserList) {
         for (Laser laser : laserList) {
             gc.setFill(laser.getColor());
             gc.fillRect(laser.getPosX(), laser.getPosY(), laser.getWidth(), laser.getLength());
