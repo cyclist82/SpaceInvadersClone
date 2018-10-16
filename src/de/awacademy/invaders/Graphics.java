@@ -6,6 +6,8 @@ import de.awacademy.invaders.model.SpaceshipEnemy;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+
 public class Graphics {
 
     private Model model;
@@ -26,14 +28,23 @@ public class Graphics {
         for (SpaceshipEnemy spaceshipEnemy : model.getEnemyList()) {
             gc.drawImage(spaceshipEnemy.getImage(), spaceshipEnemy.getPosX() - 20, spaceshipEnemy.getPosY() - 20, 40, 40);
         }
-        for (Laser laser : model.getPlayerLaserList()) {
-            gc.setFill(laser.getColor());
-            gc.fillRect(laser.getPosX(), laser.getPosY(), laser.getWidth(), laser.getLength());
-        }
-        for (Laser laser : model.getLaserEnemyList()) {
-            gc.setFill(laser.getColor());
-            gc.fillRect(laser.getPosX(), laser.getPosY(), laser.getWidth(), laser.getLength());
-        }
+        laserGraphics(model.getPlayerLaserList());
+        laserGraphics(model.getLaserEnemyList());
+//        for (Laser laser : model.getPlayerLaserList()) {
+//            gc.setFill(laser.getColor());
+//            gc.fillRect(laser.getPosX(), laser.getPosY(), laser.getWidth(), laser.getLength());
+//        }
+//        for (Laser laser : model.getLaserEnemyList()) {
+//            gc.setFill(laser.getColor());
+//            gc.fillRect(laser.getPosX(), laser.getPosY(), laser.getWidth(), laser.getLength());
+//        }
         gc.drawImage(model.getSpaceshipPlayer().getImage(), model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), 40, 40);
+    }
+
+    public void laserGraphics(ArrayList<Laser> laserList) {
+        for (Laser laser : laserList) {
+            gc.setFill(laser.getColor());
+            gc.fillRect(laser.getPosX(), laser.getPosY(), laser.getWidth(), laser.getLength());
+        }
     }
 }

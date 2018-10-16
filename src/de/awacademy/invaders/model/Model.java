@@ -2,6 +2,7 @@ package de.awacademy.invaders.model;
 
 import de.awacademy.invaders.Main;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,9 +11,9 @@ public class Model {
 
     private int counter = 0;
     // Array Raumschiffe Gegner
-    private List<SpaceshipEnemy> enemyList = new ArrayList<>();
-    private List<Laser> laserPlayerList = new ArrayList<Laser>();
-    private List<Laser> laserEnemyList = new ArrayList<Laser>();
+    private ArrayList<SpaceshipEnemy> enemyList = new ArrayList<>();
+    private ArrayList<Laser> laserPlayerList = new ArrayList<Laser>();
+    private ArrayList<Laser> laserEnemyList = new ArrayList<Laser>();
 
     SpaceshipPlayer spaceshipPlayer = new SpaceshipPlayer(Main.WIDTH / 2, 600);
 
@@ -49,7 +50,7 @@ public class Model {
     }
 
     // Rückgabe der aktuell geschossenen Gegner Laser
-    public List<Laser> getLaserEnemyList() {
+    public ArrayList<Laser> getLaserEnemyList() {
         return laserEnemyList;
     }
 
@@ -61,12 +62,12 @@ public class Model {
     }
 
     // List der Gegner
-    public List<SpaceshipEnemy> getEnemyList() {
+    public ArrayList<SpaceshipEnemy> getEnemyList() {
         return enemyList;
     }
 
     // Ausgabe Liste der Player-Laser
-    public List<Laser> getPlayerLaserList() {
+    public ArrayList<Laser> getPlayerLaserList() {
         return laserPlayerList;
     }
 
@@ -80,6 +81,7 @@ public class Model {
         for (Laser laser : laserPlayerList) {
             laser.setPosY(laser.getPosY() - laser.getSpeed());
         }
+        laserPlayerList.removeIf(laser -> laser.getPosY() <= -10);
     }
 
     // Rückgabe des Counters

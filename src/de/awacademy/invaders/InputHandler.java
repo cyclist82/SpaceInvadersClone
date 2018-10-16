@@ -1,19 +1,18 @@
 package de.awacademy.invaders;
 
 import de.awacademy.invaders.model.Model;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 
 public class InputHandler {
 
 
     private Model model;
-
+    
     // Konstruktor
     public InputHandler(Model model) {
         this.model = model;
     }
+
 
     public void onKeyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.SPACE) {
