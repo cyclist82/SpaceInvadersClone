@@ -18,12 +18,13 @@ public class Model {
 
     public void createEnemyFleet(int rows) {
         for (int row = 1; row <= rows; row++) {
-            for (int i = 60; i < Main.WIDTH / 2; i += 50) {
+            for (int i = 85; i < Main.WIDTH / 2 + 35; i += 50) {
                 enemyList.add(new SpaceshipEnemy(row * 50 - 30, i));
             }
         }
     }
 
+    // Bewegung der Gegner Flotte
     public void enemyFleetMovement() {
         for (SpaceshipEnemy enemy : enemyList) {
             if (counter / 4200 % 2 == 0) {
