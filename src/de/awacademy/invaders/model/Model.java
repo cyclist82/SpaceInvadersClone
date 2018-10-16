@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class Model {
 
+    private int points = 0;
     private int counter = 0;
     // Array Raumschiffe Gegner
     private ArrayList<SpaceshipEnemy> enemyList = new ArrayList<>();
@@ -59,11 +60,26 @@ public class Model {
         for (Laser laser : laserEnemyList) {
             laser.setPosY(laser.getPosY() + laser.getSpeed());
         }
+        laserEnemyList.removeIf(laser -> laser.getPosY() >= Main.HEIGTH);
     }
 
     // List der Gegner
     public ArrayList<SpaceshipEnemy> getEnemyList() {
         return enemyList;
+    }
+
+    public void laserPlayerDestroyEnemy() {
+        for (SpaceshipEnemy enemy : enemyList) {
+            for (Laser laser : laserPlayerList) {
+                if (laser.getPosY() <= enemy.getPosY() && laser.getPosY() >= enemy.getPosY() - 30 && laser.getPosX() <= enemy.getPosX() + 30 && laser.getPosX() >= enemy.getPosX()) {
+                    enemy.setAlive(false);
+                    laser.setAlive(false);
+                    points++;
+                }
+            }
+        }
+        enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.isAlive() == false);
+        laserPlayerList.removeIf(laser -> laser.isAlive() == false);
     }
 
     // Ausgabe Liste der Player-Laser
@@ -126,5 +142,9 @@ public class Model {
         if (spaceshipPlayer.getPosY() < Main.HEIGTH - 80) {
             spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() + 10);
         }
+    }
+
+    public int getPoints() {
+        return points;
     }
 }

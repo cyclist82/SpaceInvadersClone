@@ -6,6 +6,7 @@ public class SpaceshipEnemy {
 
     private double posY,posX;
     private Image image = new Image("de/awacademy/invaders/model/images/EnemySpaceship.png");
+    private boolean alive=true;
 
     public SpaceshipEnemy(double posY, double posX) {
         this.posY = posY;
@@ -30,5 +31,17 @@ public class SpaceshipEnemy {
 
     public Image getImage() {
         return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 }

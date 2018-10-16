@@ -8,6 +8,7 @@ public class Laser {
     private double width=3;
     private double length=5;
     private Color color=Color.RED;
+    private boolean alive=true;
 
     public Laser(double posX, double posY) {
         this.posX = posX;
@@ -40,5 +41,13 @@ public class Laser {
 
     public Color getColor() {
         return color;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
     }
 }

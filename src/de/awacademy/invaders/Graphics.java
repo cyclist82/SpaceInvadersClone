@@ -23,10 +23,10 @@ public class Graphics {
         gc.fillRect(0, 0, 1200, 750);
 
         gc.setFill(Color.WHITE);
-        gc.fillText("Hallo Welt " + model.getCounter(), 30, 30);
+        gc.fillText("Hallo Welt " + model.getCounter() + " Punktestand: " + model.getPoints(), 30, 30);
         gc.fillRect(model.getCounter() / 10, model.getCounter() / 20, 40, 40);
         for (SpaceshipEnemy spaceshipEnemy : model.getEnemyList()) {
-            gc.drawImage(spaceshipEnemy.getImage(), spaceshipEnemy.getPosX() - 20, spaceshipEnemy.getPosY() - 20, 40, 40);
+            gc.drawImage(spaceshipEnemy.getImage(), spaceshipEnemy.getPosX() - 15, spaceshipEnemy.getPosY() - 15, 30, 30);
         }
         laserGraphics(model.getPlayerLaserList());
         laserGraphics(model.getLaserEnemyList());

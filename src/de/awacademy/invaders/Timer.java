@@ -29,6 +29,7 @@ public class Timer extends AnimationTimer {
         this.model.laserPlayerMovement();
         this.model.laserEnemyMovement();
         this.model.enemyFleetFireLaser();
+        this.model.laserPlayerDestroyEnemy();
         //Grafik soll gezeichnet werden
         graphics.draw();
     }
