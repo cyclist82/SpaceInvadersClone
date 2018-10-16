@@ -7,6 +7,7 @@ import java.util.LinkedList;
 
 public class Model {
 
+    private boolean up, down, left, right;
     private int points = 0;
     private int counter = 0;
     // Array Raumschiffe Gegner
@@ -46,7 +47,7 @@ public class Model {
         explosions.add(new Explosion(posY, posX, counter));
     }
 
-    public void deleteExplosion(){
+    public void deleteExplosion() {
         explosions.removeIf(explosion -> counter >= explosion.getTimeCreated() + explosion.getTimeAlive());
     }
 
@@ -148,6 +149,7 @@ public class Model {
         laserEnemyHitPlayer();
         playerHitsEnemy();
         deleteExplosion();
+        playerMovement();
     }
 
 
@@ -160,29 +162,21 @@ public class Model {
     }
 
     // Bewegungen des Spielers durch Cursoreingabe
-    public void spaceshipPlayerLeft() {
-        if (spaceshipPlayer.getPosX() > 0) {
+    public void playerMovement() {
+        if (left && spaceshipPlayer.getPosX() > 0) {
             spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() - 10);
         }
-    }
-
-    public void spaceshipPlayerRight() {
-        if (spaceshipPlayer.getPosX() < Main.WIDTH - 80) {
+        if (right && spaceshipPlayer.getPosX() < Main.WIDTH - 80) {
             spaceshipPlayer.setPosX(spaceshipPlayer.getPosX() + 10);
         }
-    }
-
-    public void spaceshipPlayerUp() {
-        if (spaceshipPlayer.getPosY() > 0) {
+        if (up && spaceshipPlayer.getPosY() > 0) {
             spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() - 10);
         }
-    }
-
-    public void spaceshipPlayerDown() {
-        if (spaceshipPlayer.getPosY() < Main.HEIGTH - 80) {
+        if (down && spaceshipPlayer.getPosY() < Main.HEIGTH - 80) {
             spaceshipPlayer.setPosY(spaceshipPlayer.getPosY() + 10);
         }
     }
+
 
     public LinkedList<Explosion> getExplosions() {
         return explosions;
@@ -190,5 +184,21 @@ public class Model {
 
     public int getPoints() {
         return points;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
     }
 }

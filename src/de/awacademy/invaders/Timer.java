@@ -28,4 +28,8 @@ public class Timer extends AnimationTimer {
         //Grafik soll gezeichnet werden
         graphics.draw();
     }
+
+    public long getLastMillis() {
+        return lastMillis;
+    }
 }
