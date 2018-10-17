@@ -8,8 +8,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
 public class Graphics {
@@ -44,6 +42,14 @@ public class Graphics {
         if (model.getThemeValue() == 1) {
             if (model.getGameStatus() == 0) {
                 loadScreen(loadScreenSW, fontSW);
+            }
+            if (model.getGameStatus() == 6) {
+                gc.drawImage(loadScreenSW, 0, 0, Main.WIDTH, Main.HEIGTH);
+                gc.setFill(Color.GOLD);
+                gc.setFont(Font.font(fontSW, FontWeight.BOLD, 80));
+                gc.fillText("GEWONNEN", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 150);
+                gc.fillText("DRÜCKE ENTER", Main.WIDTH / 2 - 450, Main.HEIGTH / 2 + 300);
+                gc.fillText("UM NEU ZU BEGINNEN;-)", Main.WIDTH / 2 - 520, Main.HEIGTH / 2 + 450);
             }
             if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8 || model.getGameStatus() == 4) {
                 gc.drawImage(backgroundSW, 0, 0, Main.WIDTH, Main.HEIGTH);
@@ -87,7 +93,7 @@ public class Graphics {
                     gc.drawImage(enemySpaceshipImageSW, spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), spaceshipEnemy.getSizeX(), spaceshipEnemy.getSizeY());
                 }
                 for (int i = 0; i < model.getFinalEnemies().size(); i++) {
-                    gc.drawImage(finalEnemyInvaders, model.getFinalEnemies().get(i).getPosX(), model.getFinalEnemies().get(i).getPosY(), model.getFinalEnemies().get(i).getSizeX(), model.getFinalEnemies().get(i).getSizeY());
+                    gc.drawImage(finalEnemySW, model.getFinalEnemies().get(i).getPosX(), model.getFinalEnemies().get(i).getPosY(), model.getFinalEnemies().get(i).getSizeX(), model.getFinalEnemies().get(i).getSizeY());
                     gc.fillText("TODESSTERN " + (i + 1) + ": " + model.getFinalEnemies().get(i).getLives(), Main.WIDTH - scoreRightInbound, 50 + i * 100);
                 }
                 gc.drawImage(playerSpaceshipImageSW, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), model.getSpaceshipPlayer().getSizeX(), model.getSpaceshipPlayer().getSizeY());
@@ -96,6 +102,14 @@ public class Graphics {
         } else {
             if (model.getGameStatus() == 0) {
                 loadScreen(loadScreen, font);
+            }
+            if (model.getGameStatus() == 6) {
+                gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
+                gc.setFill(Color.GOLD);
+                gc.setFont(Font.font(font, FontWeight.BOLD, 150));
+                gc.fillText("GEWONNEN", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 150);
+                gc.fillText("DRÜCKE ENTER", Main.WIDTH / 2 - 450, Main.HEIGTH / 2 + 300);
+                gc.fillText("UM NEU ZU BEGINNEN;-)", Main.WIDTH / 2 - 520, Main.HEIGTH / 2 + 450);
             }
             if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8 || model.getGameStatus() == 4) {
                 gc.drawImage(background, 0, 0, Main.WIDTH, Main.HEIGTH);

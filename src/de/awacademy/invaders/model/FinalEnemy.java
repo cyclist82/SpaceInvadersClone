@@ -1,10 +1,13 @@
 package de.awacademy.invaders.model;
 
+import javafx.scene.shape.Circle;
+
 public class FinalEnemy {
 
     private double posX, posY;
     private final double sizeX = 200, sizeY = 200;
     private int lives = 30;
+    Circle circle = new Circle(100, posX+100, posY+100);
 
     public FinalEnemy(double posX, double posY) {
         this.posY = posY;

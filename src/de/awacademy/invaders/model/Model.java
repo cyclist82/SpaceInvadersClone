@@ -44,6 +44,10 @@ public class Model {
 
     Circle finalEnemy = new Circle(100);
 
+    public Circle getFinalEnemy() {
+        return finalEnemy;
+    }
+
     // Array Raumschiffe, Explosionen und Laser
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
     private LinkedList<Laser> laserPlayerList = new LinkedList<Laser>();
@@ -133,10 +137,15 @@ public class Model {
                 gameStatus = 5;
                 // Weiterer weg zu Siegeszene gamesStatus 6
             } else if (gameStatus == 7 && level >= 6) {
+                gameStarted = false;
                 gameStatus = 6;
             } else {
                 gameStatus = 10;
             }
+        }
+        if (gameStatus == 6 && enterKey) {
+            lastMenuChange = counter;
+            gameStatus = 10;
         }
         // Menüstruktur festlegen
         if (gameStatus == 10) {
@@ -262,7 +271,7 @@ public class Model {
                 enemyMovingRight = true;
             }
             if (enemy.getPosY() >= Main.HEIGTH - 20) {
-                gameStatus = 8;
+                spaceshipPlayer.setLives(0);
             }
         }
         enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getPosY() >= Main.HEIGTH);
