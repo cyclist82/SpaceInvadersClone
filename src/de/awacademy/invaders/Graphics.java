@@ -30,6 +30,7 @@ public class Graphics {
     private Image backgroundSW = new Image("de/awacademy/invaders/model/images/StarWarsGameBackground.jpg");
 
     private final int menuBorderInput = 200;
+    private final int scoreRightInbound = 550;
     private final String fontSW = "STARWARS";
     private final String font = "Digital-7";
 
@@ -46,6 +47,12 @@ public class Graphics {
             }
             if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8 || model.getGameStatus() == 4) {
                 gc.drawImage(backgroundSW, 0, 0, Main.WIDTH, Main.HEIGTH);
+                for (Explosion explosion : model.getExplosions()) {
+                    gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
+                }
+                laserGraphics(model.getPlayerLaserList());
+                laserGraphics(model.getLaserEnemyList());
+                laserGraphics(model.getLaserFinalEnemyList());
                 if (model.isLevelStart()) {
                     gc.setFill(Color.GOLD);
                     gc.setFont(Font.font(fontSW, FontWeight.BOLD, 80));
@@ -75,18 +82,14 @@ public class Graphics {
                 } else {
                     gc.setFill(Color.RED);
                 }
-                gc.fillText("SPIELER LEBEN: " + model.getSpaceshipPlayer().getLives(), Main.WIDTH / 2 + 60, Main.HEIGTH - 70);
+                gc.fillText("SPIELER LEBEN: " + model.getSpaceshipPlayer().getLives(), Main.WIDTH - scoreRightInbound, Main.HEIGTH - 70);
                 for (SpaceshipEnemy spaceshipEnemy : model.getEnemyList()) {
                     gc.drawImage(enemySpaceshipImageSW, spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), spaceshipEnemy.getSizeX(), spaceshipEnemy.getSizeY());
                 }
-                for (Explosion explosion : model.getExplosions()) {
-                    gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
+                for (int i = 0; i < model.getFinalEnemies().size(); i++) {
+                    gc.drawImage(finalEnemyInvaders, model.getFinalEnemies().get(i).getPosX(), model.getFinalEnemies().get(i).getPosY(), model.getFinalEnemies().get(i).getSizeX(), model.getFinalEnemies().get(i).getSizeY());
+                    gc.fillText("TODESSTERN " + (i + 1) + ": " + model.getFinalEnemies().get(i).getLives(), Main.WIDTH - scoreRightInbound, 50 + i * 100);
                 }
-                for (FinalEnemy finalEnemy : model.getFinalEnemies()) {
-                    gc.drawImage(finalEnemySW, finalEnemy.getPosX(), finalEnemy.getPosY(), finalEnemy.getSizeX(), finalEnemy.getSizeY());
-                }
-                laserGraphics(model.getPlayerLaserList());
-                laserGraphics(model.getLaserEnemyList());
                 gc.drawImage(playerSpaceshipImageSW, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), model.getSpaceshipPlayer().getSizeX(), model.getSpaceshipPlayer().getSizeY());
             }
             zeichneMenuScreen(loadScreenSW, playerSpaceshipImageSW, fontSW, 60);
@@ -96,6 +99,12 @@ public class Graphics {
             }
             if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8 || model.getGameStatus() == 4) {
                 gc.drawImage(background, 0, 0, Main.WIDTH, Main.HEIGTH);
+                for (Explosion explosion : model.getExplosions()) {
+                    gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
+                }
+                laserGraphics(model.getPlayerLaserList());
+                laserGraphics(model.getLaserEnemyList());
+                laserGraphics(model.getLaserFinalEnemyList());
                 if (model.isLevelStart()) {
                     gc.setFill(Color.GOLD);
                     gc.setFont(Font.font(font, FontWeight.BOLD, 150));
@@ -125,18 +134,14 @@ public class Graphics {
                 } else {
                     gc.setFill(Color.RED);
                 }
-                gc.fillText("SPIELER LEBEN: " + model.getSpaceshipPlayer().getLives(), Main.WIDTH / 2 + 60, Main.HEIGTH - 70);
+                gc.fillText("SPIELER LEBEN: " + model.getSpaceshipPlayer().getLives(), Main.WIDTH - scoreRightInbound, Main.HEIGTH - 70);
                 for (SpaceshipEnemy spaceshipEnemy : model.getEnemyList()) {
                     gc.drawImage(enemySpaceshipImage, spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), spaceshipEnemy.getSizeX(), spaceshipEnemy.getSizeY());
                 }
-                for (Explosion explosion : model.getExplosions()) {
-                    gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
+                for (int i = 0; i < model.getFinalEnemies().size(); i++) {
+                    gc.drawImage(finalEnemyInvaders, model.getFinalEnemies().get(i).getPosX(), model.getFinalEnemies().get(i).getPosY(), model.getFinalEnemies().get(i).getSizeX(), model.getFinalEnemies().get(i).getSizeY());
+                    gc.fillText("ENDGEGNER " + (i + 1) + ": " + model.getFinalEnemies().get(i).getLives(), Main.WIDTH - scoreRightInbound, 50 + i * 80);
                 }
-                for (FinalEnemy finalEnemy : model.getFinalEnemies()) {
-                    gc.drawImage(finalEnemyInvaders, finalEnemy.getPosX(), finalEnemy.getPosY(), finalEnemy.getSizeX(), finalEnemy.getSizeY());
-                }
-                laserGraphics(model.getPlayerLaserList());
-                laserGraphics(model.getLaserEnemyList());
                 gc.drawImage(playerSpaceshipImage, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), model.getSpaceshipPlayer().getSizeX(), model.getSpaceshipPlayer().getSizeY());
             }
             zeichneMenuScreen(loadScreen, playerSpaceshipImage, font, 100);
@@ -151,7 +156,7 @@ public class Graphics {
             for (int i = 0; i < this.model.getMenuPoints().size(); i++) {
                 gc.fillText(this.model.getMenuPoints().get(i), menuBorderInput, Main.HEIGTH / 2 + 100 + i * 80);
             }
-            gc.drawImage(playerSpaceshipImage, menuBorderInput - 80, Main.HEIGTH / 2 + 40 + model.getMenuPoint() * 80, 60, 60);
+            gc.drawImage(playerSpaceshipImage, menuBorderInput - 80, Main.HEIGTH / 2 + 45 + model.getMenuPoint() * 80, 60, 60);
         }
     }
 

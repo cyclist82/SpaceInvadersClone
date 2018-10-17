@@ -9,11 +9,19 @@ public class Laser {
     private double length = 5;
     private Color color = Color.RED;
     private boolean alive = true;
+    private int direction;
 
     public Laser(double posX, double posY, Color color) {
         this.posX = posX;
         this.posY = posY;
-        this.color=color;
+        this.color = color;
+    }
+
+    public Laser(double posX, double posY, Color color, int direction) {
+        this.posX = posX;
+        this.posY = posY;
+        this.color = color;
+        this.direction = direction;
     }
 
     public double getPosX() {
@@ -26,6 +34,10 @@ public class Laser {
 
     public void setPosY(double posY) {
         this.posY = posY;
+    }
+
+    public void setPosX(double posX) {
+        this.posX = posX;
     }
 
     public double getSpeed() {
@@ -52,4 +64,7 @@ public class Laser {
         this.alive = alive;
     }
 
+    public int getDirection() {
+        return direction;
+    }
 }

@@ -2,7 +2,10 @@ package de.awacademy.invaders.model;
 
 import de.awacademy.invaders.Main;
 import de.awacademy.invaders.Sounds;
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 
 import java.util.LinkedList;
@@ -27,7 +30,7 @@ public class Model {
     private boolean enemyMovingRight;
     private boolean finalEnemyMovingRight;
     private boolean finalEnemyMovingDown;
-    private int points = 0, rows;
+    private int points = 0, rows, bigBosses;
     private int counter = 0;
     private int level = 1;
     private int menuPoint = 0;
@@ -39,6 +42,8 @@ public class Model {
     private int themeValue;
     private final double gameWait = 2500;
 
+    Circle finalEnemy = new Circle(100);
+
     // Array Raumschiffe, Explosionen und Laser
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
     private LinkedList<Laser> laserPlayerList = new LinkedList<Laser>();
@@ -46,6 +51,7 @@ public class Model {
     private LinkedList<Explosion> explosions = new LinkedList<>();
     private LinkedList<String> menuPoints = new LinkedList<>();
     private LinkedList<FinalEnemy> finalEnemies = new LinkedList<>();
+    private LinkedList<Laser> laserFinalEnemyList = new LinkedList<>();
 
     Sounds sounds = new Sounds();
     int random = (int) (Math.random() * 10);
@@ -65,8 +71,10 @@ public class Model {
         }
         // Aufräumen und für neues Spiel initalisieren
         if (gameStatus == 4) {
+            gameStarted = true;
             level = 1;
             rows = 1;
+            bigBosses = 1;
             clearScreen();
             spaceshipPlayer.setLives(5);
             createEnemyFleet(rows);
@@ -78,7 +86,7 @@ public class Model {
             level++;
             if (level >= 5) {
                 clearScreen();
-                createFinalEnemy(1);
+                createFinalEnemy(bigBosses);
                 gameStatus = 1;
             } else {
                 clearScreen();
@@ -98,14 +106,19 @@ public class Model {
             if (escapeKey == true) {
                 gameStatus = 10;
             }
-            // Level ist gewonnen
+            // aktuelles Level ist gewonnen
             if (enemyList.isEmpty() && finalEnemies.isEmpty()) {
                 timeStampEndgame = counter;
                 spaceshipPlayer.setLives(spaceshipPlayer.getLives() + 1);
-                rows++;
+                if (level < 5) {
+                    rows++;
+                }
+                if (level >= 5) {
+                    bigBosses++;
+                }
                 gameStatus = 7;
             }
-            // Spiel wird verloren
+            // Spiel wird verloren Status 8
             if (spaceshipPlayer.getLives() <= 0) {
                 spaceshipPlayer.setLives(0);
                 timeStampEndgame = counter;
@@ -113,10 +126,14 @@ public class Model {
                 gameStatus = 8;
             }
         }
-        // Spiel stoppen, kurze pause bevor es weitergeht
+        // Spiel stoppen, kurze pause bevor es weitergeht, Freeze Screen
         if ((gameStatus == 7 || gameStatus == 8) && timeStampEndgame + gameWait < counter) {
-            if (gameStatus == 7) {
+            // Start der beiden Endgegner Level
+            if (gameStatus == 7 && level < 6) {
                 gameStatus = 5;
+                // Weiterer weg zu Siegeszene gamesStatus 6
+            } else if (gameStatus == 7 && level >= 6) {
+                gameStatus = 6;
             } else {
                 gameStatus = 10;
             }
@@ -217,7 +234,7 @@ public class Model {
 
     public void createFinalEnemy(int amount) {
         for (int i = 0; i < amount; i++) {
-            finalEnemies.add(new FinalEnemy(Main.WIDTH / 2 - 100, 100));
+            finalEnemies.add(new FinalEnemy(Main.WIDTH / 2 - 600 + i * 800, 100));
         }
     }
 
@@ -253,10 +270,10 @@ public class Model {
 
     // ENdgegner Bewegung
     public void finalEnemyMovement(long deltaMillis) {
-        if (counter / 400 % 12 == random) {
+        if ((int) (counter / Math.random() % 150) == 23) {
             finalEnemyMovingRight = !finalEnemyMovingRight;
         }
-        if (counter / 400 % 12 == random) {
+        if ((int) (counter / Math.random() % 150) == 34) {
             finalEnemyMovingDown = !finalEnemyMovingDown;
         }
         for (FinalEnemy enemy : finalEnemies) {
@@ -266,9 +283,9 @@ public class Model {
                 enemy.setPosX(enemy.getPosX() - deltaMillis / 6);
             }
             if (finalEnemyMovingDown) {
-                enemy.setPosY(enemy.getPosY() + deltaMillis / 6);
+                enemy.setPosY(enemy.getPosY() + deltaMillis / 13);
             } else {
-                enemy.setPosY(enemy.getPosY() - deltaMillis / 6);
+                enemy.setPosY(enemy.getPosY() - deltaMillis / 8);
             }
             if (enemy.getPosY() > Main.HEIGTH - 200) {
                 finalEnemyMovingDown = false;
@@ -286,7 +303,6 @@ public class Model {
                 gameStatus = 8;
             }
         }
-        enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getPosY() >= Main.HEIGTH);
     }
 
     // Explosion hinzufügen
@@ -310,6 +326,88 @@ public class Model {
             }
             sounds.shootLaser();
         }
+    }
+
+    // Laser des Engegner feuern
+    public void finalEnemyFireLaser() {
+        if (counter % 250 == 3 && finalEnemies.size() > 0) {
+            int position = (int) (Math.random() * finalEnemies.size());
+            for (int i = 0; i < 360; i += 30) {
+                laserFinalEnemyList.add(new Laser(finalEnemies.get(position).getPosX() + 100, finalEnemies.get(position).getPosY() + 100, Color.GREENYELLOW, i));
+            }
+            sounds.shootLaser();
+        }
+    }
+
+    // FinalGegner Laser bewegung
+    public void laserFinalEnemyMovement(long deltaMillis) {
+        laserFinalEnemyList.removeIf(laser -> laser.isAlive() == false);
+        for (Laser laser : laserFinalEnemyList) {
+            switch (laser.getDirection()) {
+                case 0: {
+                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed());
+                    break;
+                }
+                case 30: {
+                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / 1.5);
+                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / 2.3);
+                    break;
+                }
+                case 60: {
+                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / 2.3);
+                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / 1.5);
+                    break;
+                }
+                case 90: {
+                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed());
+                    break;
+                }
+                case 120: {
+                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / 1.5);
+                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / 2.3);
+                    break;
+                }
+                case 150: {
+                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / 2.3);
+                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / 1.5);
+                    break;
+                }
+                case 180: {
+                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed());
+                    break;
+                }
+                case 210: {
+                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / 1.5);
+                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / 2.3);
+                    break;
+                }
+                case 240: {
+                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / 2.3);
+                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / 1.5);
+                    break;
+                }
+                case 270: {
+                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed());
+                    break;
+                }
+                case 300: {
+                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / 1.5);
+                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / 2.3);
+                    break;
+                }
+                case 330: {
+                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / 2.3);
+                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / 1.5);
+                    break;
+                }
+
+            }
+
+        }
+        laserEnemyList.removeIf(laser -> laser.getPosY() >= Main.HEIGTH + 10);
+        laserEnemyList.removeIf(laser -> laser.getPosY() <= -10);
+        laserEnemyList.removeIf(laser -> laser.getPosX() >= Main.WIDTH + 10);
+        laserEnemyList.removeIf(laser -> laser.getPosX() <= -10);
     }
 
     // Rückgabe der aktuell geschossenen Gegner Laser
@@ -349,6 +447,29 @@ public class Model {
                 points++;
             }
         }
+    }
+
+    // Hier zerstören die Laser des Spielers den Endgegner
+    public void laserPlayerDestroyFinalEnemy() {
+        for (FinalEnemy enemy : finalEnemies) {
+            for (Laser laser : laserPlayerList) {
+                if (laser.getPosY() >= enemy.getPosY() + 30 && laser.getPosY() <= enemy.getPosY() + 170 && laser.getPosX() + 30 + 2.5 <= enemy.getPosX() + 170 && laser.getPosX() + 2.5 >= enemy.getPosX()) {
+                    createExplosion(laser.getPosY(), laser.getPosX());
+                    enemy.setLives(enemy.getLives() - 1);
+                    laser.setAlive(false);
+                    timeLastPoint = counter;
+                    points++;
+                }
+            }
+            if (nKey) {
+                enemy.setLives(0);
+            }
+            if (enemy.getLives() == 0) {
+                sounds.playEnemyKiller();
+                createExplosion(enemy.getPosY(), enemy.getPosX());
+            }
+        }
+
         // Farbänderung des Punktezählers in der Grafik anstoßen
         if (counter <= timeLastPoint + 200) {
             pointGlow = true;
@@ -357,11 +478,23 @@ public class Model {
         }
         enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getLives() == 0);
         laserPlayerList.removeIf(laser -> laser.isAlive() == false);
+        finalEnemies.removeIf(finalEnemy -> finalEnemy.getLives() == 0);
     }
 
     // Hier ziehen die Laser der Gegner dem Spieler Lebenspunkte ab
     public void laserEnemyHitPlayer() {
-        for (Laser laser : laserEnemyList) {
+        playerGetsAHit(laserEnemyList);
+        playerGetsAHit(laserFinalEnemyList);
+        if (counter <= timeLastLifeLost + 600) {
+            lifesGlow = true;
+        } else {
+            lifesGlow = false;
+        }
+        laserEnemyList.removeIf(laser -> laser.isAlive() == false);
+    }
+
+    private void playerGetsAHit(LinkedList<Laser> laserFinalEnemyList) {
+        for (Laser laser : laserFinalEnemyList) {
             if (laser.getPosY() >= spaceshipPlayer.getPosY() && laser.getPosY() <= spaceshipPlayer.getPosY() + 40 && laser.getPosX() >= spaceshipPlayer.getPosX() && laser.getPosX() <= spaceshipPlayer.getPosX() + 40) {
                 spaceshipPlayer.setLives(spaceshipPlayer.getLives() - 1);
                 laser.setAlive(false);
@@ -370,12 +503,6 @@ public class Model {
                 createExplosion(spaceshipPlayer.getPosY(), spaceshipPlayer.getPosX());
             }
         }
-        if (counter <= timeLastLifeLost + 600) {
-            lifesGlow = true;
-        } else {
-            lifesGlow = false;
-        }
-        laserEnemyList.removeIf(laser -> laser.isAlive() == false);
     }
 
     // Hier krachen Spieler und Gegner zusammen
@@ -434,9 +561,11 @@ public class Model {
         gameStatus();
         if (gameStatus == 1) {
             finalEnemyMovement(deltaMillis);
+            finalEnemyFireLaser();
             enemyFleetMovement(deltaMillis);
             laserPlayerMovement(deltaMillis);
             laserEnemyMovement(deltaMillis);
+            laserFinalEnemyMovement(deltaMillis);
             enemyFleetFireLaser();
             fireLaserPlayer();
             laserPlayerDestroyEnemy();
@@ -444,6 +573,7 @@ public class Model {
             playerHitsEnemy();
             deleteExplosion();
             playerMovement(deltaMillis);
+            laserPlayerDestroyFinalEnemy();
         }
     }
 
@@ -551,5 +681,9 @@ public class Model {
 
     public LinkedList<FinalEnemy> getFinalEnemies() {
         return finalEnemies;
+    }
+
+    public LinkedList<Laser> getLaserFinalEnemyList() {
+        return laserFinalEnemyList;
     }
 }
