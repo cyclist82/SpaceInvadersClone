@@ -41,6 +41,7 @@ public class Model {
     private long lastMenuChange;
     private int themeValue;
     private final double gameWait = 2500;
+    private final double glowTime = 600;
 
     Circle finalEnemy = new Circle(100);
 
@@ -81,6 +82,8 @@ public class Model {
             bigBosses = 1;
             clearScreen();
             spaceshipPlayer.setLives(5);
+            spaceshipPlayer.setPosX(Main.WIDTH / 2 - 15);
+            spaceshipPlayer.setPosY(Main.HEIGTH - 200);
             createEnemyFleet(rows);
             lastMenuChange = counter;
             gameStatus = 1;
@@ -193,6 +196,7 @@ public class Model {
                 lastMenuChange = counter;
                 gameStatus = 10;
                 themeValue = 0;
+                sounds.stopBackgroundSong();
                 sounds.stopBackgroundSongSW();
                 sounds.playBackgroundSong();
                 menuPoint = 0;
@@ -201,8 +205,10 @@ public class Model {
                 lastMenuChange = counter;
                 gameStatus = 10;
                 themeValue = 1;
+                sounds.stopBackgroundSongSW();
                 sounds.stopBackgroundSong();
                 sounds.playBackgroundSongSW();
+
                 menuPoint = 0;
             }
             if (enterKey && menuPoint == 2 && lastMenuChange + 200 < counter) {
@@ -279,34 +285,34 @@ public class Model {
 
     // ENdgegner Bewegung
     public void finalEnemyMovement(long deltaMillis) {
-        if ((int) (counter / Math.random() % 150) == 23) {
-            finalEnemyMovingRight = !finalEnemyMovingRight;
-        }
-        if ((int) (counter / Math.random() % 150) == 34) {
-            finalEnemyMovingDown = !finalEnemyMovingDown;
+        for (int i = 0; i < finalEnemies.size(); i++) {
+            if ((int) ((counter / Math.random()) % 150) == 23) {
+                finalEnemies.get((int) Math.random() * finalEnemies.size()).setMovingDown(!finalEnemies.get((int) Math.random() * finalEnemies.size()).isMovingDown());
+                finalEnemies.get((int) Math.random() * finalEnemies.size()).setMovingRight(!finalEnemies.get((int) Math.random() * finalEnemies.size()).isMovingRight());
+            }
         }
         for (FinalEnemy enemy : finalEnemies) {
-            if (finalEnemyMovingRight) {
+            if (enemy.isMovingRight()) {
                 enemy.setPosX(enemy.getPosX() + deltaMillis / 6);
             } else {
                 enemy.setPosX(enemy.getPosX() - deltaMillis / 6);
             }
-            if (finalEnemyMovingDown) {
+            if (enemy.isMovingDown()) {
                 enemy.setPosY(enemy.getPosY() + deltaMillis / 13);
             } else {
                 enemy.setPosY(enemy.getPosY() - deltaMillis / 8);
             }
             if (enemy.getPosY() > Main.HEIGTH - 200) {
-                finalEnemyMovingDown = false;
+                enemy.setMovingDown(false);
             }
             if (enemy.getPosY() < 0) {
-                finalEnemyMovingDown = true;
+                enemy.setMovingDown(true);
             }
             if (enemy.getPosX() > Main.WIDTH - 200) {
-                finalEnemyMovingRight = false;
+                enemy.setMovingRight(false);
             }
             if (enemy.getPosX() < 0) {
-                finalEnemyMovingRight = true;
+                enemy.setMovingRight(true);
             }
             if (enemy.getPosY() >= Main.HEIGTH - 20) {
                 gameStatus = 8;
@@ -339,7 +345,7 @@ public class Model {
 
     // Laser des Engegner feuern
     public void finalEnemyFireLaser() {
-        if (counter % 250 == 3 && finalEnemies.size() > 0) {
+        if (counter % 150 == 3 && finalEnemies.size() > 0) {
             int position = (int) (Math.random() * finalEnemies.size());
             for (int i = 0; i < 360; i += 30) {
                 laserFinalEnemyList.add(new Laser(finalEnemies.get(position).getPosX() + 100, finalEnemies.get(position).getPosY() + 100, Color.GREENYELLOW, i));
@@ -468,6 +474,8 @@ public class Model {
                     laser.setAlive(false);
                     timeLastPoint = counter;
                     points++;
+                    enemy.setGlow(true);
+                    enemy.setTimeStampGlow(counter);
                 }
             }
             if (nKey) {
@@ -477,10 +485,13 @@ public class Model {
                 sounds.playEnemyKiller();
                 createExplosion(enemy.getPosY(), enemy.getPosX());
             }
+            if (enemy.isGlow() && enemy.getTimeStampGlow() + glowTime < counter) {
+                enemy.setGlow(false);
+            }
         }
 
         // Farbänderung des Punktezählers in der Grafik anstoßen
-        if (counter <= timeLastPoint + 200) {
+        if (counter <= timeLastPoint + glowTime) {
             pointGlow = true;
         } else {
             pointGlow = false;
@@ -494,7 +505,7 @@ public class Model {
     public void laserEnemyHitPlayer() {
         playerGetsAHit(laserEnemyList);
         playerGetsAHit(laserFinalEnemyList);
-        if (counter <= timeLastLifeLost + 600) {
+        if (counter <= timeLastLifeLost + glowTime) {
             lifesGlow = true;
         } else {
             lifesGlow = false;
@@ -527,7 +538,7 @@ public class Model {
                 }
             }
         }
-        if (counter <= timeLastLifeLost + 600) {
+        if (counter <= timeLastLifeLost + glowTime) {
             lifesGlow = true;
         } else {
             lifesGlow = false;

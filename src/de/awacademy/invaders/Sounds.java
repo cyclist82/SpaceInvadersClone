@@ -12,6 +12,7 @@ public class Sounds {
     private final AudioClip enemyIsKilled = new AudioClip("file:src/de/awacademy/invaders/model/sounds/invaderkilled.wav");
     private final AudioClip playerIsHit = new AudioClip("file:src/de/awacademy/invaders/model/sounds/explosion.wav");
 
+
     public Sounds() {
     }
 
@@ -44,4 +45,14 @@ public class Sounds {
     public void playPlayerisHit() {
         playerIsHit.play();
     }
+
+    // ???? wird nie true...schade
+//    public boolean backRoundIsPlaying() {
+//        return backgroundSong.isPlaying();
+//    }
+//
+//    public boolean backRoundSWIsPlaying() {
+//        return backGroundSongSW.isPlaying();
+//    }
 }
+

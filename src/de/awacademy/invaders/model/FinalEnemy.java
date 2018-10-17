@@ -7,7 +7,13 @@ public class FinalEnemy {
     private double posX, posY;
     private final double sizeX = 200, sizeY = 200;
     private int lives = 30;
-    Circle circle = new Circle(100, posX+100, posY+100);
+    private boolean glow = false;
+    private long timeStampGlow;
+    private boolean isMovingRight;
+    private boolean isMovingDown;
+
+
+    Circle circle = new Circle(100, posX + 100, posY + 100);
 
     public FinalEnemy(double posX, double posY) {
         this.posY = posY;
@@ -44,6 +50,38 @@ public class FinalEnemy {
 
     public double getSizeY() {
         return sizeY;
+    }
+
+    public boolean isGlow() {
+        return glow;
+    }
+
+    public void setGlow(boolean glow) {
+        this.glow = glow;
+    }
+
+    public long getTimeStampGlow() {
+        return timeStampGlow;
+    }
+
+    public void setTimeStampGlow(long timeStampGlow) {
+        this.timeStampGlow = timeStampGlow;
+    }
+
+    public boolean isMovingRight() {
+        return isMovingRight;
+    }
+
+    public void setMovingRight(boolean movingRight) {
+        isMovingRight = movingRight;
+    }
+
+    public boolean isMovingDown() {
+        return isMovingDown;
+    }
+
+    public void setMovingDown(boolean movingDown) {
+        isMovingDown = movingDown;
     }
 }
 
