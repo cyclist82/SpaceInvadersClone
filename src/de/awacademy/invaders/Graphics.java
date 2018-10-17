@@ -21,6 +21,13 @@ public class Graphics {
     private Image explosionImage = new Image("de/awacademy/invaders/model/images/explosion.png");
     private Image loadScreen = new Image("de/awacademy/invaders/model/images/Space-Invaders-LoadScreen.jpg");
     private Image background = new Image("de/awacademy/invaders/model/images/background.jpg");
+
+    private Image enemySpaceshipImageSW = new Image("de/awacademy/invaders/model/images/EnemySpaceship.png");
+    private Image playerSpaceshipImageSW = new Image("de/awacademy/invaders/model/images/SpaceShipPlayer.png");
+    private Image loadScreenSW = new Image("de/awacademy/invaders/model/images/Space-Invaders-LoadScreen.jpg");
+    private Image backgroundSW = new Image("de/awacademy/invaders/model/images/background.jpg");
+
+
     private final int menuBorderInput = 200;
 
     public Graphics(Model model, GraphicsContext gc) {
@@ -87,7 +94,7 @@ public class Graphics {
             gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 180));
             gc.fillText("GAME OVER", Main.WIDTH / 2 - 480, Main.HEIGTH / 2 + 150);
         }
-        if (model.getGameStatus() == 10) {
+        if (model.getGameStatus() == 10 || model.getGameStatus() == 11) {
             gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
             gc.setFill(Color.GOLD);
             gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 100));

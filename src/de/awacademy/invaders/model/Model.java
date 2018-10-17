@@ -32,6 +32,7 @@ public class Model {
     private long timeLastLifeLost = 0;
     private long timeStampEndgame;
     private long lastMenuChange;
+    private int themeValue;
 
     // Array Raumschiffe, Explosionen und Laser
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
@@ -64,8 +65,9 @@ public class Model {
             gameStatus = 1;
         }
         if (gameStatus == 1) {
+            menuPoint = 0;
             if (escapeKey == true) {
-                gameStatus = 0;
+                gameStatus = 10;
             }
             if (enemyList.isEmpty()) {
                 timeStampEndgame = counter;
@@ -74,7 +76,7 @@ public class Model {
             if (spaceshipPlayer.getLives() <= 0) {
                 spaceshipPlayer.setLives(0);
                 timeStampEndgame = counter;
-
+                gameStarted = false;
                 gameStatus = 8;
             }
         }
@@ -99,15 +101,62 @@ public class Model {
                     menuPoint++;
                 }
             }
-            if (enterKey && menuPoint == 0) {
+            if (enterKey && menuPoint == 0 && lastMenuChange + 200 < counter) {
                 lastMenuChange = counter;
                 gameStatus = 4;
+            }
+            if (enterKey && menuPoint == 1 && gameStarted && lastMenuChange + 200 < counter) {
+                lastMenuChange = counter;
+                gameStatus = 1;
+            }
+            if (enterKey && menuPoint == 1 && !gameStarted && lastMenuChange + 200 < counter) {
+                lastMenuChange = counter;
+                gameStatus = 11;
+                menuPoint = 0;
+            }
+            if (enterKey && menuPoint == 2 && gameStarted && lastMenuChange + 200 < counter) {
+                lastMenuChange = counter;
+                gameStatus = 11;
+                menuPoint = 0;
             }
             if (enterKey && menuPoint == 2 && !gameStarted) {
                 System.exit(0);
             }
             if (enterKey && menuPoint == 3 && gameStarted) {
                 System.exit(0);
+            }
+        }
+        if (gameStatus == 11) {
+            menuPoints.clear();
+            menuPoints.add("SPACE INVADERS");
+            menuPoints.add("STAR WARS");
+            menuPoints.add("BACK");
+            if (menuPoint >= 0 && menuPoint <= menuPoints.size() - 1 && lastMenuChange + 200 < counter) {
+                if (up && menuPoint > 0) {
+                    lastMenuChange = counter;
+                    menuPoint--;
+                }
+                if (down && menuPoint < menuPoints.size() - 1) {
+                    lastMenuChange = counter;
+                    menuPoint++;
+                }
+            }
+            if (enterKey && menuPoint == 0 && lastMenuChange + 200 < counter) {
+                lastMenuChange = counter;
+                gameStatus = 10;
+                themeValue = 0;
+                menuPoint = 0;
+            }
+            if (enterKey && menuPoint == 1 && lastMenuChange + 200 < counter) {
+                lastMenuChange = counter;
+                gameStatus = 10;
+                themeValue = 1;
+                menuPoint = 0;
+            }
+            if (enterKey && menuPoint == 2 && lastMenuChange + 200 < counter) {
+                lastMenuChange = counter;
+                gameStatus = 10;
+                menuPoint = 0;
             }
         }
     }
@@ -145,7 +194,7 @@ public class Model {
                 enemyMovingRight = true;
             }
             if (enemy.getPosY() >= Main.HEIGTH - 20) {
-                gameStatus = 3;
+                gameStatus = 8;
             }
         }
         enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getPosY() >= Main.HEIGTH);
@@ -386,15 +435,15 @@ public class Model {
         this.nKey = nKey;
     }
 
-    public boolean isGameStarted() {
-        return gameStarted;
-    }
-
     public LinkedList<String> getMenuPoints() {
         return menuPoints;
     }
 
     public int getMenuPoint() {
         return menuPoint;
+    }
+
+    public int getThemeValue() {
+        return themeValue;
     }
 }
