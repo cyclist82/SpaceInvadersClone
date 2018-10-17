@@ -23,7 +23,7 @@ public class Model {
     private boolean nKey;
     private boolean pointGlow = false, lifesGlow = false;
     private boolean enemyMovingRight;
-    private int points = 0, rows = 3, menuItem = 0;
+    private int points = 0, rows = 3;
     private int counter = 0;
     private int level;
     private int menuPoint = 0;
@@ -31,6 +31,7 @@ public class Model {
     private long timeLastPoint = 0;
     private long timeLastLifeLost = 0;
     private long timeStampEndgame;
+    private long lastMenuChange;
 
     // Array Raumschiffe, Explosionen und Laser
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
@@ -77,7 +78,7 @@ public class Model {
                 gameStatus = 8;
             }
         }
-        if ((gameStatus == 7 || gameStatus == 8) && timeStampEndgame + 2000 < counter) {
+        if ((gameStatus == 7 || gameStatus == 8) && timeStampEndgame + 4000 < counter) {
             gameStatus = 10;
         }
         if (gameStatus == 10) {
@@ -88,8 +89,25 @@ public class Model {
             }
             menuPoints.add("THEME AUSWÄHLEN");
             menuPoints.add("EXIT");
-            if (enterKey == true && menuPoint == 0) {
+            if (menuPoint >= 0 && menuPoint <= menuPoints.size() - 1 && lastMenuChange + 200 < counter) {
+                if (up && menuPoint > 0) {
+                    lastMenuChange = counter;
+                    menuPoint--;
+                }
+                if (down && menuPoint < menuPoints.size() - 1) {
+                    lastMenuChange = counter;
+                    menuPoint++;
+                }
+            }
+            if (enterKey && menuPoint == 0) {
+                lastMenuChange = counter;
                 gameStatus = 4;
+            }
+            if (enterKey && menuPoint == 2 && !gameStarted) {
+                System.exit(0);
+            }
+            if (enterKey && menuPoint == 3 && gameStarted) {
+                System.exit(0);
             }
         }
     }
@@ -376,7 +394,7 @@ public class Model {
         return menuPoints;
     }
 
-    public int getMenuItem() {
-        return menuItem;
+    public int getMenuPoint() {
+        return menuPoint;
     }
 }

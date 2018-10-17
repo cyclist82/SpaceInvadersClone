@@ -36,8 +36,8 @@ public class Graphics {
             gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
             gc.setFill(Color.GOLD);
             gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 100));
-            gc.fillText("LEIFS SPACE INVADERS", Main.WIDTH / 2 - 430, Main.HEIGTH / 2 + 50);
-            gc.fillText("PRESS ANY KEY TO START", Main.WIDTH / 2 - 480, Main.HEIGTH / 2 + 150);
+            gc.fillText("LEIFS SPACE INVADERS", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 50);
+            gc.fillText("PRESS ANY KEY TO START", Main.WIDTH / 2 - 460, Main.HEIGTH / 2 + 150);
         }
         if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8 || model.getGameStatus() == 4) {
             gc.drawImage(background, 0, 0, Main.WIDTH, Main.HEIGTH);
@@ -45,6 +45,12 @@ public class Graphics {
                 gc.setFill(Color.GOLD);
                 gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 150));
                 gc.fillText("YOU SAVED EARTH", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
+            }
+            if (model.getGameStatus() == 8) {
+                gc.setFill(Color.GOLD);
+                gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 150));
+                gc.fillText("GAME OVER", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 150);
+                gc.fillText("EARTH IS LOST", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 300);
             }
             if (model.isPointGlow()) {
                 gc.setFill(Color.WHITE);
@@ -88,7 +94,7 @@ public class Graphics {
             for (int i = 0; i < this.model.getMenuPoints().size(); i++) {
                 gc.fillText(this.model.getMenuPoints().get(i), menuBorderInput, Main.HEIGTH / 2 + 100 + i * 80);
             }
-            gc.drawImage(playerSpaceshipImage, menuBorderInput - 80, Main.HEIGTH / 2 + 40 + model.getMenuItem() * 80, 60, 60);
+            gc.drawImage(playerSpaceshipImage, menuBorderInput - 80, Main.HEIGTH / 2 + 40 + model.getMenuPoint() * 80, 60, 60);
 
         }
     }
