@@ -55,6 +55,7 @@ public class Model {
     public void gameStatus() {
         // Gamesstatus 0 == Loadingsscreen
         if (gameStatus == 0) {
+            level = 1;
             enemyList.clear();
             laserEnemyList.clear();
             laserPlayerList.clear();
