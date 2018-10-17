@@ -21,6 +21,7 @@ public class Graphics {
     private Image explosionImage = new Image("de/awacademy/invaders/model/images/explosion.png");
     private Image loadScreen = new Image("de/awacademy/invaders/model/images/Space-Invaders-LoadScreen.jpg");
     private Image background = new Image("de/awacademy/invaders/model/images/background.jpg");
+    private final int menuBorderInput = 200;
 
     public Graphics(Model model, GraphicsContext gc) {
         this.model = model;
@@ -29,8 +30,8 @@ public class Graphics {
 
     // Hier wird alles gezeichnet
     public void draw() {
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, 1200, 750);
+//        gc.setFill(Color.BLACK);
+//        gc.fillRect(0, 0, 1200, 750);
         if (model.getGameStatus() == 0) {
             gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
             gc.setFill(Color.GOLD);
@@ -38,9 +39,8 @@ public class Graphics {
             gc.fillText("LEIFS SPACE INVADERS", Main.WIDTH / 2 - 430, Main.HEIGTH / 2 + 50);
             gc.fillText("PRESS ANY KEY TO START", Main.WIDTH / 2 - 480, Main.HEIGTH / 2 + 150);
         }
-        if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8) {
+        if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8 || model.getGameStatus() == 4) {
             gc.drawImage(background, 0, 0, Main.WIDTH, Main.HEIGTH);
-
             if (model.getGameStatus() == 7) {
                 gc.setFill(Color.GOLD);
                 gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 150));
@@ -85,10 +85,11 @@ public class Graphics {
             gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
             gc.setFill(Color.GOLD);
             gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 100));
-            gc.fillText("NEUES SPIEL", 150, Main.HEIGTH / 2 + 30);
-            gc.fillText("SPIEL FORTSETZTEN", 150, Main.HEIGTH / 2 + 110);
-            gc.fillText("THEME AUSWÄHLEN", 150, Main.HEIGTH / 2 + 190);
-            gc.fillText("EXIT", 150, Main.HEIGTH / 2 + 270);
+            for (int i = 0; i < this.model.getMenuPoints().size(); i++) {
+                gc.fillText(this.model.getMenuPoints().get(i), menuBorderInput, Main.HEIGTH / 2 + 100 + i * 80);
+            }
+            gc.drawImage(playerSpaceshipImage, menuBorderInput - 80, Main.HEIGTH / 2 + 40 + model.getMenuItem() * 80, 60, 60);
+
         }
     }
 

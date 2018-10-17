@@ -19,8 +19,6 @@ public class Model {
     private boolean enterKey;
     private boolean escapeKey;
     private boolean gameStarted;
-    private Font font=Font.font("Digital-7");
-
 
     private boolean nKey;
     private boolean pointGlow = false, lifesGlow = false;
@@ -28,6 +26,7 @@ public class Model {
     private int points = 0, rows = 3, menuItem = 0;
     private int counter = 0;
     private int level;
+    private int menuPoint = 0;
     private long lastShotPlayer = -140;
     private long timeLastPoint = 0;
     private long timeLastLifeLost = 0;
@@ -38,6 +37,7 @@ public class Model {
     private LinkedList<Laser> laserPlayerList = new LinkedList<Laser>();
     private LinkedList<Laser> laserEnemyList = new LinkedList<Laser>();
     private LinkedList<Explosion> explosions = new LinkedList<>();
+    private LinkedList<String> menuPoints = new LinkedList<>();
 
     Sounds sounds = new Sounds();
     int random = (int) (Math.random() * 10);
@@ -51,8 +51,16 @@ public class Model {
             laserPlayerList.clear();
             if (anyKey == true) {
                 gameStatus = 10;
-                createEnemyFleet(rows);
             }
+        }
+        if (gameStatus == 4) {
+            enemyList.clear();
+            laserPlayerList.clear();
+            laserEnemyList.clear();
+            spaceshipPlayer.setLives(5);
+            createEnemyFleet(rows);
+            gameStarted = true;
+            gameStatus = 1;
         }
         if (gameStatus == 1) {
             if (escapeKey == true) {
@@ -69,15 +77,19 @@ public class Model {
                 gameStatus = 8;
             }
         }
-        if (gameStatus == 7 && timeStampEndgame + 2000 < counter) {
-            gameStatus = 0;
-        }
-        if (gameStatus == 8 && timeStampEndgame + 2000 < counter) {
-            gameStatus = 0;
+        if ((gameStatus == 7 || gameStatus == 8) && timeStampEndgame + 2000 < counter) {
+            gameStatus = 10;
         }
         if (gameStatus == 10) {
-            if (enterKey == true) {
-                gameStatus = 1;
+            menuPoints.clear();
+            menuPoints.add("NEUES SPIEL");
+            if (gameStarted) {
+                menuPoints.add("SPIEL FORTSETZTEN");
+            }
+            menuPoints.add("THEME AUSWÄHLEN");
+            menuPoints.add("EXIT");
+            if (enterKey == true && menuPoint == 0) {
+                gameStatus = 4;
             }
         }
     }
@@ -356,7 +368,15 @@ public class Model {
         this.nKey = nKey;
     }
 
-    public Font getFont() {
-        return font;
+    public boolean isGameStarted() {
+        return gameStarted;
+    }
+
+    public LinkedList<String> getMenuPoints() {
+        return menuPoints;
+    }
+
+    public int getMenuItem() {
+        return menuItem;
     }
 }
