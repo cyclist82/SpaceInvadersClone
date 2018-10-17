@@ -4,8 +4,9 @@ import javafx.scene.image.Image;
 
 public class SpaceshipPlayer {
 
-    private double posX,posY;
-    private int lives=5;
+    private double posX, posY;
+    private final double sizeX = 40, sizeY = 40;
+    private int lives = 5;
 
     public SpaceshipPlayer(double posX, double posY) {
         this.posY = posY;
@@ -34,5 +35,13 @@ public class SpaceshipPlayer {
 
     public void setLives(int lives) {
         this.lives = lives;
+    }
+
+    public double getSizeX() {
+        return sizeX;
+    }
+
+    public double getSizeY() {
+        return sizeY;
     }
 }

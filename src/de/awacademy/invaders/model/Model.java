@@ -20,13 +20,16 @@ public class Model {
     private boolean enterKey;
     private boolean escapeKey;
     private boolean gameStarted;
+    private boolean levelStart = false;
 
     private boolean nKey;
     private boolean pointGlow = false, lifesGlow = false;
     private boolean enemyMovingRight;
-    private int points = 0, rows = 3;
+    private boolean finalEnemyMovingRight;
+    private boolean finalEnemyMovingDown;
+    private int points = 0, rows;
     private int counter = 0;
-    private int level;
+    private int level = 1;
     private int menuPoint = 0;
     private long lastShotPlayer = -140;
     private long timeLastPoint = 0;
@@ -34,6 +37,7 @@ public class Model {
     private long timeStampEndgame;
     private long lastMenuChange;
     private int themeValue;
+    private final double gameWait = 2500;
 
     // Array Raumschiffe, Explosionen und Laser
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
@@ -41,6 +45,7 @@ public class Model {
     private LinkedList<Laser> laserEnemyList = new LinkedList<Laser>();
     private LinkedList<Explosion> explosions = new LinkedList<>();
     private LinkedList<String> menuPoints = new LinkedList<>();
+    private LinkedList<FinalEnemy> finalEnemies = new LinkedList<>();
 
     Sounds sounds = new Sounds();
     int random = (int) (Math.random() * 10);
@@ -48,6 +53,7 @@ public class Model {
 
     // Gamestatus überprüfen und durch Menüpunkte bewegen
     public void gameStatus() {
+        // Gamesstatus 0 == Loadingsscreen
         if (gameStatus == 0) {
             enemyList.clear();
             laserEnemyList.clear();
@@ -56,24 +62,49 @@ public class Model {
                 gameStatus = 10;
             }
         }
+        // Aufräumen und für neues Spiel initalisieren
         if (gameStatus == 4) {
-            enemyList.clear();
-            laserPlayerList.clear();
-            laserEnemyList.clear();
+            level = 1;
+            rows = 1;
+            clearScreen();
             spaceshipPlayer.setLives(5);
             createEnemyFleet(rows);
-            gameStarted = true;
+            lastMenuChange = counter;
             gameStatus = 1;
         }
+        // nächstes Level starten
+        if (gameStatus == 5) {
+            level++;
+            if (level >= 5) {
+                clearScreen();
+                createFinalEnemy(1);
+                gameStatus = 1;
+            } else {
+                clearScreen();
+                createEnemyFleet(rows);
+                gameStatus = 1;
+            }
+            lastMenuChange = counter;
+        }
+        // Hier wird endlich gespielt
         if (gameStatus == 1) {
+            if (lastMenuChange + gameWait > counter) {
+                levelStart = true;
+            } else {
+                levelStart = false;
+            }
             menuPoint = 0;
             if (escapeKey == true) {
                 gameStatus = 10;
             }
-            if (enemyList.isEmpty()) {
+            // Level ist gewonnen
+            if (enemyList.isEmpty() && finalEnemies.isEmpty()) {
                 timeStampEndgame = counter;
+                spaceshipPlayer.setLives(spaceshipPlayer.getLives() + 1);
+                rows++;
                 gameStatus = 7;
             }
+            // Spiel wird verloren
             if (spaceshipPlayer.getLives() <= 0) {
                 spaceshipPlayer.setLives(0);
                 timeStampEndgame = counter;
@@ -81,9 +112,15 @@ public class Model {
                 gameStatus = 8;
             }
         }
-        if ((gameStatus == 7 || gameStatus == 8) && timeStampEndgame + 4000 < counter) {
-            gameStatus = 10;
+        // Spiel stoppen, kurze pause bevor es weitergeht
+        if ((gameStatus == 7 || gameStatus == 8) && timeStampEndgame + gameWait < counter) {
+            if (gameStatus == 7) {
+                gameStatus = 5;
+            } else {
+                gameStatus = 10;
+            }
         }
+        // Menüstruktur festlegen
         if (gameStatus == 10) {
             menuPoints.clear();
             menuPoints.add("NEUES SPIEL");
@@ -118,6 +155,7 @@ public class Model {
                 System.exit(0);
             }
         }
+        // Menüstruktur für Theme Auswahl
         if (gameStatus == 11) {
             menuPoints.clear();
             menuPoints.add("SPACE INVADERS");
@@ -148,6 +186,12 @@ public class Model {
         }
     }
 
+    private void clearScreen() {
+        enemyList.clear();
+        laserPlayerList.clear();
+        laserEnemyList.clear();
+    }
+
     private void menuSteuerung() {
         if (menuPoint >= 0 && menuPoint <= menuPoints.size() - 1 && lastMenuChange + 200 < counter) {
             if (up && menuPoint > 0) {
@@ -167,6 +211,12 @@ public class Model {
             for (int i = 85; i < Main.WIDTH / 2 + 100; i += 50) {
                 enemyList.add(new SpaceshipEnemy(row * 50 - 30, i));
             }
+        }
+    }
+
+    public void createFinalEnemy(int amount) {
+        for (int i = 0; i < amount; i++) {
+            finalEnemies.add(new FinalEnemy(Main.WIDTH / 2 - 100, 100));
         }
     }
 
@@ -192,6 +242,44 @@ public class Model {
             }
             if (enemy.getPosX() < 30) {
                 enemyMovingRight = true;
+            }
+            if (enemy.getPosY() >= Main.HEIGTH - 20) {
+                gameStatus = 8;
+            }
+        }
+        enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getPosY() >= Main.HEIGTH);
+    }
+
+    // ENdgegner Bewegung
+    public void finalEnemyMovement(long deltaMillis) {
+        if (counter / 400 % 12 == random) {
+            finalEnemyMovingRight = !finalEnemyMovingRight;
+        }
+        if (counter / 400 % 12 == random) {
+            finalEnemyMovingDown = !finalEnemyMovingDown;
+        }
+        for (FinalEnemy enemy : finalEnemies) {
+            if (finalEnemyMovingRight) {
+                enemy.setPosX(enemy.getPosX() + deltaMillis / 6);
+            } else {
+                enemy.setPosX(enemy.getPosX() - deltaMillis / 6);
+            }
+            if (finalEnemyMovingDown) {
+                enemy.setPosY(enemy.getPosY() + deltaMillis / 6);
+            } else {
+                enemy.setPosY(enemy.getPosY() - deltaMillis / 6);
+            }
+            if (enemy.getPosY() > Main.HEIGTH - 200) {
+                finalEnemyMovingDown = false;
+            }
+            if (enemy.getPosY() < 0) {
+                finalEnemyMovingDown = true;
+            }
+            if (enemy.getPosX() > Main.WIDTH - 200) {
+                finalEnemyMovingRight = false;
+            }
+            if (enemy.getPosX() < 0) {
+                finalEnemyMovingRight = true;
             }
             if (enemy.getPosY() >= Main.HEIGTH - 20) {
                 gameStatus = 8;
@@ -344,6 +432,7 @@ public class Model {
         counter += deltaMillis;
         gameStatus();
         if (gameStatus == 1) {
+            finalEnemyMovement(deltaMillis);
             enemyFleetMovement(deltaMillis);
             laserPlayerMovement(deltaMillis);
             laserEnemyMovement(deltaMillis);
@@ -449,5 +538,17 @@ public class Model {
 
     public int getThemeValue() {
         return themeValue;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public boolean isLevelStart() {
+        return levelStart;
+    }
+
+    public LinkedList<FinalEnemy> getFinalEnemies() {
+        return finalEnemies;
     }
 }

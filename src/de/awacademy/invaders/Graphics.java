@@ -1,9 +1,6 @@
 package de.awacademy.invaders;
 
-import de.awacademy.invaders.model.Explosion;
-import de.awacademy.invaders.model.Laser;
-import de.awacademy.invaders.model.Model;
-import de.awacademy.invaders.model.SpaceshipEnemy;
+import de.awacademy.invaders.model.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -27,6 +24,8 @@ public class Graphics {
 
     private Image enemySpaceshipImageSW = new Image("de/awacademy/invaders/model/images/StarDestroyer.png");
     private Image playerSpaceshipImageSW = new Image("de/awacademy/invaders/model/images/milleniumFalcon.png");
+    private Image finalEnemySW = new Image("de/awacademy/invaders/model/images/Deathstar_detail.png");
+    private Image finalEnemyInvaders = new Image("de/awacademy/invaders/model/images/Deathstar_detail.png");
     private Image loadScreenSW = new Image("de/awacademy/invaders/model/images/StarWarsMenuBackground.jpg");
     private Image backgroundSW = new Image("de/awacademy/invaders/model/images/StarWarsGameBackground.jpg");
 
@@ -47,9 +46,15 @@ public class Graphics {
             }
             if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8 || model.getGameStatus() == 4) {
                 gc.drawImage(backgroundSW, 0, 0, Main.WIDTH, Main.HEIGTH);
+                if (model.isLevelStart()) {
+                    gc.setFill(Color.GOLD);
+                    gc.setFont(Font.font(fontSW, FontWeight.BOLD, 80));
+                    gc.fillText("LEVEL " + this.model.getLevel() + " STARTET", Main.WIDTH / 2 - 600, Main.HEIGTH / 2);
+                }
                 if (model.getGameStatus() == 7) {
                     gc.setFill(Color.GOLD);
                     gc.setFont(Font.font(fontSW, FontWeight.BOLD, 80));
+                    gc.fillText("LEVEL " + this.model.getLevel() + " COMPLETE", Main.WIDTH / 2 - 600, Main.HEIGTH / 2);
                     gc.fillText("YOU SAVED ALDERAN", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
                 }
                 if (model.getGameStatus() == 8) {
@@ -72,25 +77,34 @@ public class Graphics {
                 }
                 gc.fillText("SPIELER LEBEN: " + model.getSpaceshipPlayer().getLives(), Main.WIDTH / 2 + 60, Main.HEIGTH - 70);
                 for (SpaceshipEnemy spaceshipEnemy : model.getEnemyList()) {
-                    gc.drawImage(enemySpaceshipImageSW, spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), 40, 40);
+                    gc.drawImage(enemySpaceshipImageSW, spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), spaceshipEnemy.getSizeX(), spaceshipEnemy.getSizeY());
                 }
                 for (Explosion explosion : model.getExplosions()) {
                     gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
                 }
+                for (FinalEnemy finalEnemy : model.getFinalEnemies()) {
+                    gc.drawImage(finalEnemySW, finalEnemy.getPosX(), finalEnemy.getPosY(), finalEnemy.getSizeX(), finalEnemy.getSizeY());
+                }
                 laserGraphics(model.getPlayerLaserList());
                 laserGraphics(model.getLaserEnemyList());
-                gc.drawImage(playerSpaceshipImageSW, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), 40, 40);
+                gc.drawImage(playerSpaceshipImageSW, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), model.getSpaceshipPlayer().getSizeX(), model.getSpaceshipPlayer().getSizeY());
             }
-            zeichneMenuScreen(loadScreenSW, playerSpaceshipImageSW, fontSW);
+            zeichneMenuScreen(loadScreenSW, playerSpaceshipImageSW, fontSW, 60);
         } else {
             if (model.getGameStatus() == 0) {
                 loadScreen(loadScreen, font);
             }
             if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8 || model.getGameStatus() == 4) {
                 gc.drawImage(background, 0, 0, Main.WIDTH, Main.HEIGTH);
+                if (model.isLevelStart()) {
+                    gc.setFill(Color.GOLD);
+                    gc.setFont(Font.font(font, FontWeight.BOLD, 150));
+                    gc.fillText("LEVEL " + this.model.getLevel() + " STARTET", Main.WIDTH / 2 - 600, Main.HEIGTH / 2);
+                }
                 if (model.getGameStatus() == 7) {
                     gc.setFill(Color.GOLD);
                     gc.setFont(Font.font(font, FontWeight.BOLD, 150));
+                    gc.fillText("LEVEL " + this.model.getLevel() + " COMPLETE", Main.WIDTH / 2 - 600, Main.HEIGTH / 2);
                     gc.fillText("YOU SAVED EARTH", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
                 }
                 if (model.getGameStatus() == 8) {
@@ -113,24 +127,27 @@ public class Graphics {
                 }
                 gc.fillText("SPIELER LEBEN: " + model.getSpaceshipPlayer().getLives(), Main.WIDTH / 2 + 60, Main.HEIGTH - 70);
                 for (SpaceshipEnemy spaceshipEnemy : model.getEnemyList()) {
-                    gc.drawImage(enemySpaceshipImage, spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), 30, 30);
+                    gc.drawImage(enemySpaceshipImage, spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), spaceshipEnemy.getSizeX(), spaceshipEnemy.getSizeY());
                 }
                 for (Explosion explosion : model.getExplosions()) {
                     gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
                 }
+                for (FinalEnemy finalEnemy : model.getFinalEnemies()) {
+                    gc.drawImage(finalEnemyInvaders, finalEnemy.getPosX(), finalEnemy.getPosY(), finalEnemy.getSizeX(), finalEnemy.getSizeY());
+                }
                 laserGraphics(model.getPlayerLaserList());
                 laserGraphics(model.getLaserEnemyList());
-                gc.drawImage(playerSpaceshipImage, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), 40, 40);
+                gc.drawImage(playerSpaceshipImage, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), model.getSpaceshipPlayer().getSizeX(), model.getSpaceshipPlayer().getSizeY());
             }
-            zeichneMenuScreen(loadScreen, playerSpaceshipImage, font);
+            zeichneMenuScreen(loadScreen, playerSpaceshipImage, font, 100);
         }
     }
 
-    private void zeichneMenuScreen(Image loadScreen, Image playerSpaceshipImage, String font) {
+    private void zeichneMenuScreen(Image loadScreen, Image playerSpaceshipImage, String font, double textSize) {
         if (model.getGameStatus() == 10 || model.getGameStatus() == 11) {
             gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
             gc.setFill(Color.GOLD);
-            gc.setFont(Font.font(font, FontWeight.BOLD, 100));
+            gc.setFont(Font.font(font, FontWeight.BOLD, textSize));
             for (int i = 0; i < this.model.getMenuPoints().size(); i++) {
                 gc.fillText(this.model.getMenuPoints().get(i), menuBorderInput, Main.HEIGTH / 2 + 100 + i * 80);
             }

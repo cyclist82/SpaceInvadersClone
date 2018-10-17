@@ -1,12 +1,12 @@
 package de.awacademy.invaders.model;
 
-public class SpaceshipEnemy {
+public class FinalEnemy {
 
-    private double posY, posX;
-    private final double sizeX = 30, sizeY = 30;
-    private int lives = 1;
+    private double posX, posY;
+    private final double sizeX = 200, sizeY = 200;
+    private int lives = 30;
 
-    public SpaceshipEnemy(double posY, double posX) {
+    public FinalEnemy(double posX, double posY) {
         this.posY = posY;
         this.posX = posX;
     }
@@ -27,7 +27,6 @@ public class SpaceshipEnemy {
         this.posX = posX;
     }
 
-
     public int getLives() {
         return lives;
     }
@@ -44,3 +43,4 @@ public class SpaceshipEnemy {
         return sizeY;
     }
 }
+
