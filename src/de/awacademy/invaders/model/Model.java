@@ -49,7 +49,6 @@ public class Model {
     // Gamestatus überprüfen und durch Menüpunkte bewegen
     public void gameStatus() {
         if (gameStatus == 0) {
-            sounds.playBackgroundSong();
             enemyList.clear();
             laserEnemyList.clear();
             laserPlayerList.clear();
@@ -91,18 +90,9 @@ public class Model {
             if (gameStarted) {
                 menuPoints.add("SPIEL FORTSETZTEN");
             }
-            menuPoints.add("THEME AUSWÄHLEN");
+            menuPoints.add("THEME AUSWAEHLEN");
             menuPoints.add("EXIT");
-            if (menuPoint >= 0 && menuPoint <= menuPoints.size() - 1 && lastMenuChange + 200 < counter) {
-                if (up && menuPoint > 0) {
-                    lastMenuChange = counter;
-                    menuPoint--;
-                }
-                if (down && menuPoint < menuPoints.size() - 1) {
-                    lastMenuChange = counter;
-                    menuPoint++;
-                }
-            }
+            menuSteuerung();
             if (enterKey && menuPoint == 0 && lastMenuChange + 200 < counter) {
                 lastMenuChange = counter;
                 gameStatus = 4;
@@ -133,16 +123,7 @@ public class Model {
             menuPoints.add("SPACE INVADERS");
             menuPoints.add("STAR WARS");
             menuPoints.add("BACK");
-            if (menuPoint >= 0 && menuPoint <= menuPoints.size() - 1 && lastMenuChange + 200 < counter) {
-                if (up && menuPoint > 0) {
-                    lastMenuChange = counter;
-                    menuPoint--;
-                }
-                if (down && menuPoint < menuPoints.size() - 1) {
-                    lastMenuChange = counter;
-                    menuPoint++;
-                }
-            }
+            menuSteuerung();
             if (enterKey && menuPoint == 0 && lastMenuChange + 200 < counter) {
                 lastMenuChange = counter;
                 gameStatus = 10;
@@ -163,6 +144,19 @@ public class Model {
                 lastMenuChange = counter;
                 gameStatus = 10;
                 menuPoint = 0;
+            }
+        }
+    }
+
+    private void menuSteuerung() {
+        if (menuPoint >= 0 && menuPoint <= menuPoints.size() - 1 && lastMenuChange + 200 < counter) {
+            if (up && menuPoint > 0) {
+                lastMenuChange = counter;
+                menuPoint--;
+            }
+            if (down && menuPoint < menuPoints.size() - 1) {
+                lastMenuChange = counter;
+                menuPoint++;
             }
         }
     }

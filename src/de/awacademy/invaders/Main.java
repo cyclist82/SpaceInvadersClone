@@ -36,6 +36,8 @@ public class Main extends Application {
         primaryStage.setMaximized(true);
 
         Model model = new Model();
+        Sounds sounds = new Sounds();
+        sounds.playBackgroundSong();
         Graphics graphics = new Graphics(model, canvas.getGraphicsContext2D());
         timer = new Timer(model, graphics);
 
