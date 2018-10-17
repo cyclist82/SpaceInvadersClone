@@ -2,6 +2,7 @@ package de.awacademy.invaders.model;
 
 import de.awacademy.invaders.Main;
 import de.awacademy.invaders.Sounds;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.util.LinkedList;
@@ -48,6 +49,7 @@ public class Model {
     // Gamestatus überprüfen und durch Menüpunkte bewegen
     public void gameStatus() {
         if (gameStatus == 0) {
+            sounds.playBackgroundSong();
             enemyList.clear();
             laserEnemyList.clear();
             laserPlayerList.clear();
@@ -145,12 +147,16 @@ public class Model {
                 lastMenuChange = counter;
                 gameStatus = 10;
                 themeValue = 0;
+                sounds.stopBackgroundSongSW();
+                sounds.playBackgroundSong();
                 menuPoint = 0;
             }
             if (enterKey && menuPoint == 1 && lastMenuChange + 200 < counter) {
                 lastMenuChange = counter;
                 gameStatus = 10;
                 themeValue = 1;
+                sounds.stopBackgroundSong();
+                sounds.playBackgroundSongSW();
                 menuPoint = 0;
             }
             if (enterKey && menuPoint == 2 && lastMenuChange + 200 < counter) {
@@ -214,7 +220,11 @@ public class Model {
     public void enemyFleetFireLaser() {
         if (counter % 110 < 5 && counter % 110 > 2 && enemyList.size() > 0) {
             int position = (int) (Math.random() * enemyList.size());
-            laserEnemyList.add(new Laser(enemyList.get(position).getPosX() + 15, enemyList.get(position).getPosY() + 30));
+            if (themeValue == 1) {
+                laserEnemyList.add(new Laser(enemyList.get(position).getPosX() + 15, enemyList.get(position).getPosY() + 30, Color.GREENYELLOW));
+            } else {
+                laserEnemyList.add(new Laser(enemyList.get(position).getPosX() + 15, enemyList.get(position).getPosY() + 30, Color.RED));
+            }
             sounds.shootLaser();
         }
     }
@@ -315,7 +325,7 @@ public class Model {
     public void fireLaserPlayer() {
         if (spaceKey) {
             if (lastShotPlayer + 500 <= counter) {
-                laserPlayerList.add(new Laser(spaceshipPlayer.getPosX() + 20, spaceshipPlayer.getPosY()));
+                laserPlayerList.add(new Laser(spaceshipPlayer.getPosX() + 20, spaceshipPlayer.getPosY(), Color.RED));
                 lastShotPlayer = counter;
                 sounds.shootLaser();
             }

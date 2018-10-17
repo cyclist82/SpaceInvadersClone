@@ -3,16 +3,17 @@ package de.awacademy.invaders.model;
 import javafx.scene.paint.Color;
 
 public class Laser {
-    private double posX,posY;
-    private double speed=0.5;
-    private double width=3;
-    private double length=5;
-    private Color color=Color.RED;
-    private boolean alive=true;
+    private double posX, posY;
+    private double speed = 0.5;
+    private double width = 3;
+    private double length = 5;
+    private Color color = Color.RED;
+    private boolean alive = true;
 
-    public Laser(double posX, double posY) {
+    public Laser(double posX, double posY, Color color) {
         this.posX = posX;
         this.posY = posY;
+        this.color=color;
     }
 
     public double getPosX() {
@@ -50,4 +51,5 @@ public class Laser {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+
 }
