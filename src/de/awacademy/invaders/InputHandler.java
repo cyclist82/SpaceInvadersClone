@@ -1,9 +1,6 @@
 package de.awacademy.invaders;
 
 import de.awacademy.invaders.model.Model;
-import javafx.beans.binding.BooleanBinding;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.input.*;
 
 public class InputHandler {
@@ -40,7 +37,7 @@ public class InputHandler {
             this.model.setEscapeKey(true);
         }
         if (event.getCode() == KeyCode.N) {
-            this.model.createEnemyFleet(3);
+            this.model.setnKey(true);
         }
     }
 
@@ -66,6 +63,9 @@ public class InputHandler {
         }
         if (event.getCode() == KeyCode.DOWN) {
             this.model.setDown(false);
+        }
+        if(event.getCode()==KeyCode.N){
+            this.model.setnKey(false);
         }
     }
     //    public void onClick(MouseEvent event) {

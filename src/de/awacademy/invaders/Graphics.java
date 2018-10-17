@@ -34,25 +34,31 @@ public class Graphics {
         if (model.getGameStatus() == 0) {
             gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
             gc.setFill(Color.GOLD);
-            gc.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 70));
+            gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 100));
             gc.fillText("LEIFS SPACE INVADERS", Main.WIDTH / 2 - 430, Main.HEIGTH / 2 + 50);
             gc.fillText("PRESS ANY KEY TO START", Main.WIDTH / 2 - 480, Main.HEIGTH / 2 + 150);
         }
-        if (model.getGameStatus() == 1) {
+        if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8) {
             gc.drawImage(background, 0, 0, Main.WIDTH, Main.HEIGTH);
-            gc.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 50));
+
+            if (model.getGameStatus() == 7) {
+                gc.setFill(Color.GOLD);
+                gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 150));
+                gc.fillText("YOU SAVED EARTH", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
+            }
             if (model.isPointGlow()) {
                 gc.setFill(Color.WHITE);
             } else {
                 gc.setFill(Color.RED);
             }
-            gc.fillText("Punktestand: " + model.getPoints(), 30, Main.HEIGTH - 70);
+            gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 50));
+            gc.fillText("PUNKTE: " + model.getPoints(), 30, Main.HEIGTH - 70);
             if (model.isLifesGlow()) {
                 gc.setFill(Color.WHITE);
             } else {
                 gc.setFill(Color.RED);
             }
-            gc.fillText("Spieler Leben: " + model.getSpaceshipPlayer().getLives(), Main.WIDTH / 2 + 60, Main.HEIGTH - 70);
+            gc.fillText("SPIELER LEBEN: " + model.getSpaceshipPlayer().getLives(), Main.WIDTH / 2 + 60, Main.HEIGTH - 70);
             for (SpaceshipEnemy spaceshipEnemy : model.getEnemyList()) {
                 gc.drawImage(enemySpaceshipImage, spaceshipEnemy.getPosX(), spaceshipEnemy.getPosY(), 30, 30);
             }
@@ -66,14 +72,23 @@ public class Graphics {
         if (model.getGameStatus() == 2) {
             gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
             gc.setFill(Color.GOLD);
-            gc.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 120));
+            gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 120));
             gc.fillText("YOU SAVED EARTH", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
         }
         if (model.getGameStatus() == 3) {
             gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
             gc.setFill(Color.GOLD);
-            gc.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 180));
+            gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 180));
             gc.fillText("GAME OVER", Main.WIDTH / 2 - 480, Main.HEIGTH / 2 + 150);
+        }
+        if (model.getGameStatus() == 10) {
+            gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
+            gc.setFill(Color.GOLD);
+            gc.setFont(Font.font("Digital-7", FontWeight.BOLD, 100));
+            gc.fillText("NEUES SPIEL", 150, Main.HEIGTH / 2 + 30);
+            gc.fillText("SPIEL FORTSETZTEN", 150, Main.HEIGTH / 2 + 110);
+            gc.fillText("THEME AUSWÄHLEN", 150, Main.HEIGTH / 2 + 190);
+            gc.fillText("EXIT", 150, Main.HEIGTH / 2 + 270);
         }
     }
 

@@ -12,11 +12,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
     public static final double WIDTH = 1920;
-    public static final double HEIGTH = 1012;
+    public static final double HEIGTH = 1080;
 
     private Timer timer;
 
@@ -29,6 +30,7 @@ public class Main extends Application {
         // Scene
         Scene scene = new Scene(group);
         primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
         primaryStage.setTitle("Leifs Space Invaders");
         primaryStage.setMaximized(true);

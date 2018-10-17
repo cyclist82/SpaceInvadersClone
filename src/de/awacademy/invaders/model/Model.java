@@ -2,22 +2,36 @@ package de.awacademy.invaders.model;
 
 import de.awacademy.invaders.Main;
 import de.awacademy.invaders.Sounds;
+import javafx.scene.text.Font;
 
 import java.util.LinkedList;
-import java.util.Random;
 
 
 public class Model {
 
     private int gameStatus = 0;
-    private boolean up, down, left, right, spaceKey, anyKey, enterKey, escapeKey;
+    private boolean up;
+    private boolean down;
+    private boolean left;
+    private boolean right;
+    private boolean spaceKey;
+    private boolean anyKey;
+    private boolean enterKey;
+    private boolean escapeKey;
+    private boolean gameStarted;
+    private Font font=Font.font("Digital-7");
+
+
+    private boolean nKey;
     private boolean pointGlow = false, lifesGlow = false;
     private boolean enemyMovingRight;
     private int points = 0, rows = 3, menuItem = 0;
     private int counter = 0;
+    private int level;
     private long lastShotPlayer = -140;
     private long timeLastPoint = 0;
     private long timeLastLifeLost = 0;
+    private long timeStampEndgame;
 
     // Array Raumschiffe, Explosionen und Laser
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
@@ -27,43 +41,48 @@ public class Model {
 
     Sounds sounds = new Sounds();
     int random = (int) (Math.random() * 10);
-    SpaceshipPlayer spaceshipPlayer = new SpaceshipPlayer(Main.WIDTH / 2-15, Main.HEIGTH-200);
+    SpaceshipPlayer spaceshipPlayer = new SpaceshipPlayer(Main.WIDTH / 2 - 15, Main.HEIGTH - 200);
 
+    // Gamestatus überprüfen und durch Menüpunkte bewegen
     public void gameStatus() {
         if (gameStatus == 0) {
             enemyList.clear();
             laserEnemyList.clear();
             laserPlayerList.clear();
             if (anyKey == true) {
-                gameStatus = 1;
+                gameStatus = 10;
                 createEnemyFleet(rows);
             }
         }
         if (gameStatus == 1) {
             if (escapeKey == true) {
                 gameStatus = 0;
-
             }
             if (enemyList.isEmpty()) {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                gameStatus = 2;
+                timeStampEndgame = counter;
+                gameStatus = 7;
             }
             if (spaceshipPlayer.getLives() <= 0) {
                 spaceshipPlayer.setLives(0);
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                gameStatus = 3;
+                timeStampEndgame = counter;
+
+                gameStatus = 8;
+            }
+        }
+        if (gameStatus == 7 && timeStampEndgame + 2000 < counter) {
+            gameStatus = 0;
+        }
+        if (gameStatus == 8 && timeStampEndgame + 2000 < counter) {
+            gameStatus = 0;
+        }
+        if (gameStatus == 10) {
+            if (enterKey == true) {
+                gameStatus = 1;
             }
         }
     }
 
+    // Gegnerflotte erzeugen
     public void createEnemyFleet(int rows) {
         for (int row = 1; row <= rows; row++) {
             for (int i = 85; i < Main.WIDTH / 2 + 100; i += 50) {
@@ -107,6 +126,7 @@ public class Model {
         explosions.add(new Explosion(posY, posX, counter));
     }
 
+    // Explosion nach Ablaufzeit löschen
     public void deleteExplosion() {
         explosions.removeIf(explosion -> counter >= explosion.getTimeCreated() + explosion.getTimeAlive());
     }
@@ -145,15 +165,19 @@ public class Model {
                 if (laser.getPosY() - 20 <= enemy.getPosY() && laser.getPosY() - 20 >= enemy.getPosY() - 30 && laser.getPosX() + 2.5 <= enemy.getPosX() + 30 && laser.getPosX() + 2.5 >= enemy.getPosX()) {
                     enemy.setLives(enemy.getLives() - 1);
                     laser.setAlive(false);
-                    createExplosion(enemy.getPosY(), enemy.getPosX());
-                    points++;
                     timeLastPoint = counter;
-                    if (enemy.getLives() == 0) {
-                        sounds.playEnemyKiller();
-                    }
                 }
             }
+            if (nKey) {
+                enemy.setLives(0);
+            }
+            if (enemy.getLives() == 0) {
+                sounds.playEnemyKiller();
+                createExplosion(enemy.getPosY(), enemy.getPosX());
+                points++;
+            }
         }
+        // Farbänderung des Punktezählers in der Grafik anstoßen
         if (counter <= timeLastPoint + 200) {
             pointGlow = true;
         } else {
@@ -326,5 +350,13 @@ public class Model {
 
     public boolean isLifesGlow() {
         return lifesGlow;
+    }
+
+    public void setnKey(boolean nKey) {
+        this.nKey = nKey;
+    }
+
+    public Font getFont() {
+        return font;
     }
 }
