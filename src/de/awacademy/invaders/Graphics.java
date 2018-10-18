@@ -7,7 +7,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import java.io.File;
 import java.util.LinkedList;
 
 public class Graphics {

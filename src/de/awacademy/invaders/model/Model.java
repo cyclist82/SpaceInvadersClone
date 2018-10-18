@@ -40,12 +40,13 @@ public class Model {
     private int themeValue;
     private final double gameWait = 2500;
     private final double glowTime = 600;
-
-    Circle finalEnemy = new Circle(100);
-
-    public Circle getFinalEnemy() {
-        return finalEnemy;
-    }
+    private final double finalEnemyLaser1Speed = 1.3;
+    private final double finalEnemyLaser2Speed = 2.0;
+    private final int multiExplotionTime = 2000;
+    private double lastMultiExplosion = -3000;
+    private double lastExplosion;
+    private double finalEnemyDiedX;
+    private double finalEnemyDiedY;
 
     // Array Raumschiffe, Explosionen und Laser
     private LinkedList<SpaceshipEnemy> enemyList = new LinkedList<>();
@@ -55,6 +56,7 @@ public class Model {
     private LinkedList<String> menuPoints = new LinkedList<>();
     private LinkedList<FinalEnemy> finalEnemies = new LinkedList<>();
     private LinkedList<Laser> laserFinalEnemyList = new LinkedList<>();
+
 
     Sounds sounds = new Sounds();
     int random = (int) (Math.random() * 10);
@@ -70,6 +72,7 @@ public class Model {
             }
             level = 1;
             enemyList.clear();
+            finalEnemies.clear();
             laserEnemyList.clear();
             laserPlayerList.clear();
             if (anyKey == true) {
@@ -228,6 +231,7 @@ public class Model {
         explosions.clear();
         laserPlayerList.clear();
         laserEnemyList.clear();
+        laserFinalEnemyList.clear();
         finalEnemies.clear();
     }
 
@@ -331,6 +335,24 @@ public class Model {
         explosions.add(new Explosion(posY, posX, counter));
     }
 
+    public void createMultiExplosion(double posY, double posX) {
+        lastExplosion = 0;
+        while (lastMultiExplosion + 2000 > counter && lastExplosion + 250 < counter) {
+            lastExplosion = counter;
+            sounds.playEnemyKiller();
+            for (int i = 0; i < 8; i++) {
+                createExplosion(posY - 100 + Math.random() * 180, posX + Math.random() * 180);
+            }
+//            for (int i = 0; i < 15; i++) {
+//                double posYRandom = posY + Math.random() * 200;
+//                double posXRandom = posX + Math.random() * 200;
+//                if (Math.sqrt((Math.pow((posY - posYRandom), 2) + (Math.pow((posX - posXRandom), 2)))) <= 100) {
+//                    createExplosion(posY, posX);
+//                }
+//            }
+        }
+    }
+
     // Explosion nach Ablaufzeit löschen
     public void deleteExplosion() {
         explosions.removeIf(explosion -> counter >= explosion.getTimeCreated() + explosion.getTimeAlive());
@@ -370,13 +392,13 @@ public class Model {
                     break;
                 }
                 case 30: {
-                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / 1.5);
-                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / 2.3);
+                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / finalEnemyLaser1Speed);
+                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / finalEnemyLaser2Speed);
                     break;
                 }
                 case 60: {
-                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / 2.3);
-                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / 1.5);
+                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / finalEnemyLaser2Speed);
+                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / finalEnemyLaser1Speed);
                     break;
                 }
                 case 90: {
@@ -384,13 +406,13 @@ public class Model {
                     break;
                 }
                 case 120: {
-                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / 1.5);
-                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / 2.3);
+                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / finalEnemyLaser1Speed);
+                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / finalEnemyLaser2Speed);
                     break;
                 }
                 case 150: {
-                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / 2.3);
-                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / 1.5);
+                    laser.setPosX(laser.getPosX() + deltaMillis * laser.getSpeed() / finalEnemyLaser2Speed);
+                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / finalEnemyLaser1Speed);
                     break;
                 }
                 case 180: {
@@ -398,13 +420,13 @@ public class Model {
                     break;
                 }
                 case 210: {
-                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / 1.5);
-                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / 2.3);
+                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / finalEnemyLaser1Speed);
+                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / finalEnemyLaser2Speed);
                     break;
                 }
                 case 240: {
-                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / 2.3);
-                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / 1.5);
+                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / finalEnemyLaser2Speed);
+                    laser.setPosY(laser.getPosY() + deltaMillis * laser.getSpeed() / finalEnemyLaser1Speed);
                     break;
                 }
                 case 270: {
@@ -412,13 +434,13 @@ public class Model {
                     break;
                 }
                 case 300: {
-                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / 1.5);
-                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / 2.3);
+                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / finalEnemyLaser1Speed);
+                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / finalEnemyLaser2Speed);
                     break;
                 }
                 case 330: {
-                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / 2.3);
-                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / 1.5);
+                    laser.setPosX(laser.getPosX() - deltaMillis * laser.getSpeed() / finalEnemyLaser2Speed);
+                    laser.setPosY(laser.getPosY() - deltaMillis * laser.getSpeed() / finalEnemyLaser1Speed);
                     break;
                 }
 
@@ -486,20 +508,22 @@ public class Model {
                     enemy.setGlow(true);
                     enemy.setTimeStampGlow(counter);
                     sounds.playEnemyKiller();
+
                 }
             }
+
             if (nKey) {
                 enemy.setLives(0);
             }
             if (enemy.getLives() == 0) {
-                sounds.playEnemyKiller();
-                createExplosion(enemy.getPosY(), enemy.getPosX());
+                finalEnemyDiedX = enemy.getPosX();
+                finalEnemyDiedY = enemy.getSizeY();
+                lastMultiExplosion = counter;
             }
             if (enemy.isGlow() && enemy.getTimeStampGlow() + glowTime < counter) {
                 enemy.setGlow(false);
             }
         }
-
         // Farbänderung des Punktezählers in der Grafik anstoßen
         if (counter <= timeLastPoint + glowTime) {
             pointGlow = true;
@@ -625,6 +649,13 @@ public class Model {
             deleteExplosion();
             playerMovement(deltaMillis);
             laserPlayerDestroyFinalEnemy();
+            createMultiExplosion(finalEnemyDiedY, finalEnemyDiedX);
+        }
+        if (gameStatus == 7) {
+            deleteExplosion();
+            if (level >= 5) {
+                createMultiExplosion(finalEnemyDiedY, finalEnemyDiedX);
+            }
         }
     }
 

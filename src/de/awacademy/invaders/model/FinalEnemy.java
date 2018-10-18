@@ -12,7 +12,6 @@ public class FinalEnemy extends Shape {
     private long timeStampGlow;
     private boolean isMovingRight;
     private boolean isMovingDown;
-    private Circle circle;
 
     public FinalEnemy(double posX, double posY) {
         this.posY = posY;

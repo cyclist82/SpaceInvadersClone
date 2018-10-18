@@ -47,7 +47,6 @@ public class Sounds {
         playerIsHit.play();
     }
 
-    // ???? wird nie true...schade
     public boolean backRoundIsPlaying() {
         return backgroundSong.isPlaying();
     }
