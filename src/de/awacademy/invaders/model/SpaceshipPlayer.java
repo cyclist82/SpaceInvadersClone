@@ -1,7 +1,5 @@
 package de.awacademy.invaders.model;
 
-import javafx.scene.image.Image;
-
 public class SpaceshipPlayer {
 
     private double posX, posY;

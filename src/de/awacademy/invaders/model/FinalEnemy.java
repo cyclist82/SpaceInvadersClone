@@ -1,9 +1,6 @@
 package de.awacademy.invaders.model;
 
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
-
-public class FinalEnemy extends Shape {
+public class FinalEnemy {
 
     private double posX, posY;
     private final double sizeX = 200, sizeY = 200;

@@ -3,7 +3,7 @@ package de.awacademy.invaders.model;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
-public class Laser extends Shape {
+public class Laser {
     private double posX, posY;
     private double speed = 0.5;
     private double width = 3;

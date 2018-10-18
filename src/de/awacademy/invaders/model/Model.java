@@ -72,6 +72,7 @@ public class Model {
             }
             level = 1;
             enemyList.clear();
+            explosions.clear();
             finalEnemies.clear();
             laserEnemyList.clear();
             laserPlayerList.clear();
@@ -81,6 +82,7 @@ public class Model {
         }
         // Aufräumen und für neues Spiel initalisieren
         if (gameStatus == 4) {
+
             resetCounter();
             gameStarted = true;
             level = 1;
@@ -233,6 +235,8 @@ public class Model {
         laserEnemyList.clear();
         laserFinalEnemyList.clear();
         finalEnemies.clear();
+        lastMultiExplosion = -2000;
+        lastExplosion = -2000;
     }
 
     private void menuSteuerung() {
