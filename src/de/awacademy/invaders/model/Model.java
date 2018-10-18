@@ -28,8 +28,6 @@ public class Model {
     private boolean nKey;
     private boolean pointGlow = false, lifesGlow = false;
     private boolean enemyMovingRight;
-    private boolean finalEnemyMovingRight;
-    private boolean finalEnemyMovingDown;
     private int points = 0, rows, bigBosses;
     private int counter = 0;
     private int level = 1;
@@ -66,6 +64,10 @@ public class Model {
     public void gameStatus() {
         // Gamesstatus 0 == Loadingsscreen
         if (gameStatus == 0) {
+            if (!sounds.backRoundIsPlaying()) {
+                sounds.playBackgroundSong();
+
+            }
             level = 1;
             enemyList.clear();
             laserEnemyList.clear();
@@ -76,6 +78,7 @@ public class Model {
         }
         // Aufräumen und für neues Spiel initalisieren
         if (gameStatus == 4) {
+            resetCounter();
             gameStarted = true;
             level = 1;
             rows = 1;
@@ -196,19 +199,20 @@ public class Model {
                 lastMenuChange = counter;
                 gameStatus = 10;
                 themeValue = 0;
-                sounds.stopBackgroundSong();
-                sounds.stopBackgroundSongSW();
-                sounds.playBackgroundSong();
+                if (sounds.backRoundSWIsPlaying()) {
+                    sounds.stopBackgroundSongSW();
+                    sounds.playBackgroundSong();
+                }
                 menuPoint = 0;
             }
             if (enterKey && menuPoint == 1 && lastMenuChange + 200 < counter) {
                 lastMenuChange = counter;
                 gameStatus = 10;
                 themeValue = 1;
-                sounds.stopBackgroundSongSW();
-                sounds.stopBackgroundSong();
-                sounds.playBackgroundSongSW();
-
+                if (sounds.backRoundIsPlaying()) {
+                    sounds.stopBackgroundSong();
+                    sounds.playBackgroundSongSW();
+                }
                 menuPoint = 0;
             }
             if (enterKey && menuPoint == 2 && lastMenuChange + 200 < counter) {
@@ -221,8 +225,10 @@ public class Model {
 
     private void clearScreen() {
         enemyList.clear();
+        explosions.clear();
         laserPlayerList.clear();
         laserEnemyList.clear();
+        finalEnemies.clear();
     }
 
     private void menuSteuerung() {
@@ -451,6 +457,8 @@ public class Model {
                     enemy.setLives(enemy.getLives() - 1);
                     laser.setAlive(false);
                     timeLastPoint = counter;
+                    sounds.playEnemyKiller();
+                    createExplosion(enemy.getPosY(), enemy.getPosX());
                 }
             }
             if (nKey) {
@@ -467,15 +475,17 @@ public class Model {
     // Hier zerstören die Laser des Spielers den Endgegner
     public void laserPlayerDestroyFinalEnemy() {
         for (FinalEnemy enemy : finalEnemies) {
+            Circle circle = new Circle(enemy.getPosX() + 100, enemy.getPosY() + 100, 100);
             for (Laser laser : laserPlayerList) {
-                if (laser.getPosY() >= enemy.getPosY() + 30 && laser.getPosY() <= enemy.getPosY() + 170 && laser.getPosX() + 30 + 2.5 <= enemy.getPosX() + 170 && laser.getPosX() + 2.5 >= enemy.getPosX()) {
-                    createExplosion(laser.getPosY(), laser.getPosX());
+                if ((Math.sqrt((Math.pow((enemy.getPosY() + 100 - laser.getPosY()), 2)) + (Math.pow((enemy.getPosX() + 100 - laser.getPosX()), 2)))) <= 100) {
+                    createExplosion(laser.getPosY() - 10, laser.getPosX() - 10);
                     enemy.setLives(enemy.getLives() - 1);
                     laser.setAlive(false);
                     timeLastPoint = counter;
                     points++;
                     enemy.setGlow(true);
                     enemy.setTimeStampGlow(counter);
+                    sounds.playEnemyKiller();
                 }
             }
             if (nKey) {
@@ -526,11 +536,31 @@ public class Model {
     }
 
     // Hier krachen Spieler und Gegner zusammen
+    public void playerHitsFinalEnemy() {
+        for (FinalEnemy enemy : finalEnemies) {
+            if ((Math.sqrt((Math.pow((enemy.getPosY() + 100 - spaceshipPlayer.getPosY() + 20), 2)) + (Math.pow((enemy.getPosX() + 100 - spaceshipPlayer.getPosX() + 20), 2)))) <= 100 && timeLastLifeLost + 2000 < counter) {
+                spaceshipPlayer.setLives(spaceshipPlayer.getLives() - 1);
+                enemy.setLives(enemy.getLives() - 1);
+                timeLastLifeLost = counter;
+                createExplosion(spaceshipPlayer.getPosY(), spaceshipPlayer.getPosX());
+                sounds.playEnemyKiller();
+
+            }
+        }
+        if (counter <= timeLastLifeLost + glowTime) {
+            lifesGlow = true;
+        } else {
+            lifesGlow = false;
+        }
+        enemyList.removeIf(spaceshipEnemy -> spaceshipEnemy.getLives() == 0);
+    }
+
+    // Hier krachen Spieler und Endgegner zusammen
     public void playerHitsEnemy() {
         for (SpaceshipEnemy enemy : enemyList) {
             if (enemy.getPosY() >= spaceshipPlayer.getPosY() - 28 && enemy.getPosY() <= spaceshipPlayer.getPosY() + 28 && enemy.getPosX() >= spaceshipPlayer.getPosX() - 28 && enemy.getPosX() <= spaceshipPlayer.getPosX() + 28) {
                 spaceshipPlayer.setLives(spaceshipPlayer.getLives() - 1);
-                enemy.setLives(0);
+                enemy.setLives(enemy.getLives() - 1);
                 timeLastLifeLost = counter;
                 if (enemy.getLives() == 0) {
                     sounds.playEnemyKiller();
@@ -580,6 +610,7 @@ public class Model {
         counter += deltaMillis;
         gameStatus();
         if (gameStatus == 1) {
+            playerHitsFinalEnemy();
             finalEnemyMovement(deltaMillis);
             finalEnemyFireLaser();
             enemyFleetMovement(deltaMillis);
@@ -596,7 +627,6 @@ public class Model {
             laserPlayerDestroyFinalEnemy();
         }
     }
-
 
     public void resetCounter() {
         counter = 0;
@@ -706,4 +736,6 @@ public class Model {
     public LinkedList<Laser> getLaserFinalEnemyList() {
         return laserFinalEnemyList;
     }
+
+
 }

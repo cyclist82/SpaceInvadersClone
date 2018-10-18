@@ -53,9 +53,6 @@ public class Graphics {
             }
             if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8 || model.getGameStatus() == 4) {
                 gc.drawImage(backgroundSW, 0, 0, Main.WIDTH, Main.HEIGTH);
-                for (Explosion explosion : model.getExplosions()) {
-                    gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
-                }
                 laserGraphics(model.getPlayerLaserList());
                 laserGraphics(model.getLaserEnemyList());
                 laserGraphics(model.getLaserFinalEnemyList());
@@ -68,13 +65,13 @@ public class Graphics {
                     gc.setFill(Color.GOLD);
                     gc.setFont(Font.font(fontSW, FontWeight.BOLD, 80));
                     gc.fillText("LEVEL " + this.model.getLevel() + " COMPLETE", Main.WIDTH / 2 - 600, Main.HEIGTH / 2);
-                    gc.fillText("YOU SAVED ALDERAN", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
+                    gc.fillText("YOU SAVED ALDERAAN", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
                 }
                 if (model.getGameStatus() == 8) {
                     gc.setFill(Color.GOLD);
                     gc.setFont(Font.font(fontSW, FontWeight.BOLD, 80));
                     gc.fillText("GAME OVER", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 150);
-                    gc.fillText("ALDERAN IS LOST", Main.WIDTH / 2 - 350, Main.HEIGTH / 2 + 300);
+                    gc.fillText("ALDERAAN IS LOST", Main.WIDTH / 2 - 350, Main.HEIGTH / 2 + 300);
                 }
                 if (model.isPointGlow()) {
                     gc.setFill(Color.WHITE);
@@ -102,6 +99,9 @@ public class Graphics {
                     gc.fillText("TODESSTERN " + (i + 1) + ": " + model.getFinalEnemies().get(i).getLives(), Main.WIDTH - scoreRightInbound, 50 + i * 100);
                 }
                 gc.drawImage(playerSpaceshipImageSW, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), model.getSpaceshipPlayer().getSizeX(), model.getSpaceshipPlayer().getSizeY());
+                for (Explosion explosion : model.getExplosions()) {
+                    gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
+                }
             }
             zeichneMenuScreen(loadScreenSW, playerSpaceshipImageSW, fontSW, 60);
         } else {
@@ -118,9 +118,6 @@ public class Graphics {
             }
             if (model.getGameStatus() == 1 || model.getGameStatus() == 7 || model.getGameStatus() == 8 || model.getGameStatus() == 4) {
                 gc.drawImage(background, 0, 0, Main.WIDTH, Main.HEIGTH);
-                for (Explosion explosion : model.getExplosions()) {
-                    gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
-                }
                 laserGraphics(model.getPlayerLaserList());
                 laserGraphics(model.getLaserEnemyList());
                 laserGraphics(model.getLaserFinalEnemyList());
@@ -167,6 +164,9 @@ public class Graphics {
                     gc.fillText("ENDGEGNER " + (i + 1) + ": " + model.getFinalEnemies().get(i).getLives(), Main.WIDTH - scoreRightInbound, 50 + i * 80);
                 }
                 gc.drawImage(playerSpaceshipImage, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), model.getSpaceshipPlayer().getSizeX(), model.getSpaceshipPlayer().getSizeY());
+                for (Explosion explosion : model.getExplosions()) {
+                    gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
+                }
             }
             zeichneMenuScreen(loadScreen, playerSpaceshipImage, font, 100);
         }

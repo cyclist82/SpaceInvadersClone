@@ -16,6 +16,7 @@ public class Sounds {
     public Sounds() {
     }
 
+
     public void shootLaser() {
         laserShot.play();
     }
@@ -47,12 +48,12 @@ public class Sounds {
     }
 
     // ???? wird nie true...schade
-//    public boolean backRoundIsPlaying() {
-//        return backgroundSong.isPlaying();
-//    }
-//
-//    public boolean backRoundSWIsPlaying() {
-//        return backGroundSongSW.isPlaying();
-//    }
+    public boolean backRoundIsPlaying() {
+        return backgroundSong.isPlaying();
+    }
+
+    public boolean backRoundSWIsPlaying() {
+        return backGroundSongSW.isPlaying();
+    }
 }
 

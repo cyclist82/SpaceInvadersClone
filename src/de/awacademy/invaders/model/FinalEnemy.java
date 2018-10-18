@@ -1,8 +1,9 @@
 package de.awacademy.invaders.model;
 
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 
-public class FinalEnemy {
+public class FinalEnemy extends Shape {
 
     private double posX, posY;
     private final double sizeX = 200, sizeY = 200;
@@ -11,9 +12,7 @@ public class FinalEnemy {
     private long timeStampGlow;
     private boolean isMovingRight;
     private boolean isMovingDown;
-
-
-    Circle circle = new Circle(100, posX + 100, posY + 100);
+    private Circle circle;
 
     public FinalEnemy(double posX, double posY) {
         this.posY = posY;
