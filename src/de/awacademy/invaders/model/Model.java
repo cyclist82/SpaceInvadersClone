@@ -511,7 +511,6 @@ public class Model {
 
                 }
             }
-
             if (nKey) {
                 enemy.setLives(0);
             }

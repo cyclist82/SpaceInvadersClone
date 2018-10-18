@@ -13,18 +13,18 @@ public class Graphics {
 
     private Model model;
     private GraphicsContext gc;
-    private Image enemySpaceshipImage = new Image("de/awacademy/invaders/model/images/EnemySpaceship.png");
-    private Image playerSpaceshipImage = new Image("de/awacademy/invaders/model/images/SpaceShipPlayer.png");
-    private Image explosionImage = new Image("de/awacademy/invaders/model/images/explosion.png");
-    private Image loadScreen = new Image("de/awacademy/invaders/model/images/Space-Invaders-LoadScreen.jpg");
-    private Image background = new Image("de/awacademy/invaders/model/images/background.jpg");
+    private Image enemySpaceshipImage = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/EnemySpaceship.png"));
+    private Image playerSpaceshipImage = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/SpaceShipPlayer.png"));
+    private Image explosionImage = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/explosion.png"));
+    private Image loadScreen = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/Space-Invaders-LoadScreen.jpg"));
+    private Image background = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/background.jpg"));
 
-    private Image enemySpaceshipImageSW = new Image("de/awacademy/invaders/model/images/StarDestroyer.png");
-    private Image playerSpaceshipImageSW = new Image("de/awacademy/invaders/model/images/milleniumFalcon.png");
-    private Image finalEnemySW = new Image("de/awacademy/invaders/model/images/Deathstar_detail.png");
-    private Image finalEnemyInvaders = new Image("de/awacademy/invaders/model/images/Deathstar_detail.png");
-    private Image loadScreenSW = new Image("de/awacademy/invaders/model/images/StarWarsMenuBackground.jpg");
-    private Image backgroundSW = new Image("de/awacademy/invaders/model/images/StarWarsGameBackground.jpg");
+    private Image enemySpaceshipImageSW = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/TieFighter.png"));
+    private Image playerSpaceshipImageSW = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/milleniumFalcon.png"));
+    private Image finalEnemySW = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/Deathstar_detail.png"));
+    private Image finalEnemyInvaders = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/Deathstar_detail.png"));
+    private Image loadScreenSW = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/StarWarsMenuBackground.jpg"));
+    private Image backgroundSW = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/StarWarsGameBackground.jpg"));
 
     private final int menuBorderInput = 200;
     private final int scoreRightInbound = 550;
