@@ -82,8 +82,6 @@ public class Model {
         }
         // Aufräumen und für neues Spiel initalisieren
         if (gameStatus == 4) {
-
-            resetCounter();
             gameStarted = true;
             level = 1;
             rows = 1;
@@ -345,7 +343,7 @@ public class Model {
             lastExplosion = counter;
             sounds.playEnemyKiller();
             for (int i = 0; i < 8; i++) {
-                createExplosion(posY - 100 + Math.random() * 180, posX + Math.random() * 180);
+                createExplosion(posY + Math.random() * 180, posX + 10 + Math.random() * 180);
             }
 //            for (int i = 0; i < 15; i++) {
 //                double posYRandom = posY + Math.random() * 200;
