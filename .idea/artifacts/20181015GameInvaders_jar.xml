@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="20181015GameInvaders:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/20181015GameInvaders_jar</output-path>
+    <root id="archive" name="20181015GameInvaders.jar">
+      <element id="module-output" name="20181015GameInvaders" />
+    </root>
+  </artifact>
+</component>
