@@ -31,7 +31,6 @@ public class Graphics {
 
     private final int menuBorderInput = 200;
     private final int scoreRightInbound = 550;
-    private final Font fontSpaceInvader = Font.loadFont(new FileInputStream(new File(".de/awacademy/invaders/model/fonts/digital-7.ttf")), 12);
     private final String fontSW = "STARWARS";
     private final String font = "Digital-7";
 
