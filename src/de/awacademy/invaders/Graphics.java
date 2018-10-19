@@ -7,6 +7,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
 public class Graphics {
@@ -28,10 +31,11 @@ public class Graphics {
 
     private final int menuBorderInput = 200;
     private final int scoreRightInbound = 550;
+    private final Font fontSpaceInvader = Font.loadFont(new FileInputStream(new File(".de/awacademy/invaders/model/fonts/digital-7.ttf")), 12);
     private final String fontSW = "STARWARS";
     private final String font = "Digital-7";
 
-    public Graphics(Model model, GraphicsContext gc) {
+    public Graphics(Model model, GraphicsContext gc) throws FileNotFoundException {
         this.model = model;
         this.gc = gc;
     }
