@@ -6,11 +6,11 @@ import javafx.scene.media.MediaPlayer;
 
 public class Sounds {
 
-    private final AudioClip laserShot = new AudioClip("file:src/de/awacademy/invaders/model/sounds/shoot.wav");
-    private final AudioClip backgroundSong = new AudioClip("file:src/de/awacademy/invaders/model/sounds/spaceInvadersSong.mp3");
-    private final AudioClip backGroundSongSW = new AudioClip("file:src/de/awacademy/invaders/model/sounds/ImperialMarch.mp3");
-    private final AudioClip enemyIsKilled = new AudioClip("file:src/de/awacademy/invaders/model/sounds/invaderkilled.wav");
-    private final AudioClip playerIsHit = new AudioClip("file:src/de/awacademy/invaders/model/sounds/explosion.wav");
+    private final AudioClip laserShot = new AudioClip(getClass().getResource("/audio/shoot.wav").toString());
+    private final AudioClip backgroundSong = new AudioClip(getClass().getResource("/audio/spaceInvadersSong.mp3").toString());
+    private final AudioClip backGroundSongSW = new AudioClip(getClass().getResource("/audio/imperialMarch.mp3").toString());
+    private final AudioClip enemyIsKilled = new AudioClip(getClass().getResource("/audio/invaderkilled.wav").toString());
+    private final AudioClip playerIsHit = new AudioClip(getClass().getResource("/audio/explosion.wav").toString());
 
 
     public Sounds() {

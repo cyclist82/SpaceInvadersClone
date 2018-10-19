@@ -10,27 +10,30 @@ import javafx.scene.text.FontWeight;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.LinkedList;
 
 public class Graphics {
 
     private Model model;
     private GraphicsContext gc;
-    private Image enemySpaceshipImage = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/EnemySpaceship.png"));
-    private Image playerSpaceshipImage = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/SpaceShipPlayer.png"));
-    private Image explosionImage = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/Explosion.png"));
-    private Image loadScreen = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/SpaceInvadersMenuBackground.jpg"));
-    private Image background = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/SpaceInvadersBackground.jpg"));
+    private Image enemySpaceshipImage = new Image(getClass().getResource("/images/EnemySpaceship.png").toString());
+    private Image playerSpaceshipImage = new Image(getClass().getResource("/images/SpaceShipPlayer.png").toString());
+    private Image explosionImage = new Image(getClass().getResource("/images/Explosion.png").toString());
+    private Image loadScreen = new Image(getClass().getResource("/images/SpaceInvadersMenuBackground.jpg").toString());
+    private Image background = new Image(getClass().getResource("/images/SpaceInvadersBackground.jpg").toString());
 
-    private Image enemySpaceshipImageSW = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/TieFighter.png"));
-    private Image playerSpaceshipImageSW = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/MilleniumFalcon.png"));
-    private Image finalEnemySW = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/Todesstern.png"));
-    private Image finalEnemyInvaders = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/Todesstern.png"));
-    private Image loadScreenSW = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/StarWarsMenuBackground.jpg"));
-    private Image backgroundSW = new Image(getClass().getClassLoader().getResourceAsStream("de/awacademy/invaders/model/images/StarWarsGameBackground.jpg"));
+    private Image enemySpaceshipImageSW = new Image(getClass().getResource("/images/TieFighter.png").toString());
+    private Image playerSpaceshipImageSW = new Image(getClass().getResource("/images/MilleniumFalcon.png").toString());
+    private Image finalEnemySW = new Image(getClass().getResource("/images/Todesstern.png").toString());
+    private Image finalEnemyInvaders = new Image(getClass().getResource("/images/Todesstern.png").toString());
+    private Image loadScreenSW = new Image(getClass().getResource("/images/StarWarsMenuBackground.jpg").toString());
+    private Image backgroundSW = new Image(getClass().getResource("/images/StarWarsGameBackground.jpg").toString());
 
     private final int menuBorderInput = 200;
     private final int scoreRightInbound = 550;
+//    private final Font fontStarWars80 = (Font.loadFont(getClass().getResourceAsStream("/resources/fonts/starjout.ttf"), 120));
+
     private final String fontSW = "STARWARS";
     private final String font = "Digital-7";
 
@@ -48,7 +51,7 @@ public class Graphics {
             if (model.getGameStatus() == 6) {
                 gc.drawImage(loadScreenSW, 0, 0, Main.WIDTH, Main.HEIGTH);
                 gc.setFill(Color.GOLD);
-                gc.setFont(Font.font(fontSW, FontWeight.BOLD, 80));
+                gc.setFont(Font.font( fontSW, FontWeight.BOLD, 80));
                 gc.fillText("GEWONNEN", 100, 400);
                 gc.fillText("DRUECKE ENTER", 100, 500);
                 gc.fillText("UM NEU ZU BEGINNEN", 100, 600);
