@@ -10,7 +10,6 @@ import javafx.scene.text.Font;
 
 import java.util.LinkedList;
 
-
 public class Model {
 
     private int gameStatus = 0;
@@ -345,12 +344,11 @@ public class Model {
             for (int i = 0; i < 8; i++) {
                 createExplosion(posY + Math.random() * 180, posX + 10 + Math.random() * 180);
             }
-//            for (int i = 0; i < 15; i++) {
 //                double posYRandom = posY + Math.random() * 200;
 //                double posXRandom = posX + Math.random() * 200;
 //                if (Math.sqrt((Math.pow((posY - posYRandom), 2) + (Math.pow((posX - posXRandom), 2)))) <= 100) {
 //                    createExplosion(posY, posX);
-//                }
+//
 //            }
         }
     }
