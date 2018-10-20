@@ -37,7 +37,7 @@ public class Main extends Application {
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
         primaryStage.setTitle("Leifs Space Invaders");
-        primaryStage.setMaximized(true);
+        primaryStage.setFullScreen(true);
 
         Model model = new Model();
         Graphics graphics = new Graphics(model, canvas.getGraphicsContext2D());
