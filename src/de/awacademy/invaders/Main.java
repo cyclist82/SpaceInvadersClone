@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -18,11 +19,17 @@ public class Main extends Application {
 
     public static final double WIDTH = 1920;
     public static final double HEIGTH = 1080;
+    public final Font fontIN60 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/subway.ttf"), 60);
+    public final Font fontIN120 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/subway.ttf"), 120);
+    public final Font fontSW60 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/starwars.ttf"), 60);
+    public final Font fontSW120 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/starwars.ttf"), 120);
 
     private Timer timer;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+
         javafx.scene.canvas.Canvas canvas = new Canvas(WIDTH, HEIGTH);
         Group group = new Group();
         group.getChildren().addAll(canvas);

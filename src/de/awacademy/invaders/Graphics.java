@@ -30,12 +30,17 @@ public class Graphics {
     private Image loadScreenSW = new Image(getClass().getResource("/images/StarWarsMenuBackground.jpg").toString());
     private Image backgroundSW = new Image(getClass().getResource("/images/StarWarsGameBackground.jpg").toString());
 
-    private final int menuBorderInput = 200;
-    private final int scoreRightInbound = 550;
-//    private final Font fontStarWars80 = (Font.loadFont(getClass().getResourceAsStream("/resources/fonts/starjout.ttf"), 120));
 
-    private final String fontSW = "STARWARS";
-    private final String font = "Digital-7";
+    private final int menuBorderInput = 200;
+    private final int scoreRightInbound = 700;
+    private Main meins = new Main();
+    private final Font fontIN60 = meins.fontIN60;
+    private final Font fontIN120 = meins.fontIN120;
+    private final Font fontSW60 = meins.fontSW60;
+    private final Font fontSW120 = meins.fontSW120;
+
+//    private final String fontSW = "STARWARS";
+//    private final String font = "Digital-7";
 
     public Graphics(Model model, GraphicsContext gc) throws FileNotFoundException {
         this.model = model;
@@ -46,12 +51,12 @@ public class Graphics {
     public void draw() {
         if (model.getThemeValue() == 1) {
             if (model.getGameStatus() == 0) {
-                loadScreen(loadScreenSW, fontSW);
+                loadScreen(loadScreenSW, fontSW60);
             }
             if (model.getGameStatus() == 6) {
                 gc.drawImage(loadScreenSW, 0, 0, Main.WIDTH, Main.HEIGTH);
                 gc.setFill(Color.GOLD);
-                gc.setFont(Font.font( fontSW, FontWeight.BOLD, 80));
+                gc.setFont(fontSW60);
                 gc.fillText("GEWONNEN", 100, 400);
                 gc.fillText("DRUECKE ENTER", 100, 500);
                 gc.fillText("UM NEU ZU BEGINNEN", 100, 600);
@@ -63,18 +68,18 @@ public class Graphics {
                 laserGraphics(model.getLaserFinalEnemyList());
                 if (model.isLevelStart()) {
                     gc.setFill(Color.GOLD);
-                    gc.setFont(Font.font(fontSW, FontWeight.BOLD, 80));
+                    gc.setFont(fontSW120);
                     gc.fillText("LEVEL " + this.model.getLevel() + " STARTET", Main.WIDTH / 2 - 600, Main.HEIGTH / 2);
                 }
                 if (model.getGameStatus() == 7) {
                     gc.setFill(Color.GOLD);
-                    gc.setFont(Font.font(fontSW, FontWeight.BOLD, 80));
+                    gc.setFont(fontSW120);
                     gc.fillText("LEVEL " + this.model.getLevel() + " COMPLETE", Main.WIDTH / 2 - 600, Main.HEIGTH / 2);
                     gc.fillText("YOU SAVED ALDERAAN", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
                 }
                 if (model.getGameStatus() == 8) {
                     gc.setFill(Color.GOLD);
-                    gc.setFont(Font.font(fontSW, FontWeight.BOLD, 80));
+                    gc.setFont(fontSW120);
                     gc.fillText("GAME OVER", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 150);
                     gc.fillText("ALDERAAN IS LOST", Main.WIDTH / 2 - 350, Main.HEIGTH / 2 + 300);
                 }
@@ -83,7 +88,7 @@ public class Graphics {
                 } else {
                     gc.setFill(Color.RED);
                 }
-                gc.setFont(Font.font(fontSW, FontWeight.BOLD, 50));
+                gc.setFont(fontSW60);
                 gc.fillText("PUNKTE: " + model.getPoints(), 30, Main.HEIGTH - 70);
                 if (model.isLifesGlow()) {
                     gc.setFill(Color.WHITE);
@@ -108,15 +113,15 @@ public class Graphics {
                     gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
                 }
             }
-            zeichneMenuScreen(loadScreenSW, playerSpaceshipImageSW, fontSW, 60);
+            zeichneMenuScreen(loadScreenSW, playerSpaceshipImageSW, fontSW60);
         } else {
             if (model.getGameStatus() == 0) {
-                loadScreen(loadScreen, font);
+                loadScreen(loadScreen, fontIN60);
             }
             if (model.getGameStatus() == 6) {
                 gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
                 gc.setFill(Color.GOLD);
-                gc.setFont(Font.font(font, FontWeight.BOLD, 120));
+                gc.setFont(fontIN60);
                 gc.fillText("GEWONNEN", Main.WIDTH / 2 - 250, Main.HEIGTH / 2 - 70);
                 gc.fillText("DRUECKE ENTER", Main.WIDTH / 2 - 380, Main.HEIGTH / 2 + 50);
                 gc.fillText("UM NEU ZU BEGINNEN", Main.WIDTH / 2 - 520, Main.HEIGTH / 2 + 170);
@@ -128,18 +133,18 @@ public class Graphics {
                 laserGraphics(model.getLaserFinalEnemyList());
                 if (model.isLevelStart()) {
                     gc.setFill(Color.GOLD);
-                    gc.setFont(Font.font(font, FontWeight.BOLD, 150));
+                    gc.setFont(fontIN120);
                     gc.fillText("LEVEL " + this.model.getLevel() + " STARTET", Main.WIDTH / 2 - 600, Main.HEIGTH / 2);
                 }
                 if (model.getGameStatus() == 7) {
                     gc.setFill(Color.GOLD);
-                    gc.setFont(Font.font(font, FontWeight.BOLD, 150));
+                    gc.setFont(fontIN120);
                     gc.fillText("LEVEL " + this.model.getLevel() + " COMPLETE", Main.WIDTH / 2 - 600, Main.HEIGTH / 2);
                     gc.fillText("YOU SAVED EARTH", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
                 }
                 if (model.getGameStatus() == 8) {
                     gc.setFill(Color.GOLD);
-                    gc.setFont(Font.font(font, FontWeight.BOLD, 150));
+                    gc.setFont(fontIN120);
                     gc.fillText("GAME OVER", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 150);
                     gc.fillText("EARTH IS LOST", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 300);
                 }
@@ -148,7 +153,7 @@ public class Graphics {
                 } else {
                     gc.setFill(Color.RED);
                 }
-                gc.setFont(Font.font(font, FontWeight.BOLD, 50));
+                gc.setFont(fontIN60);
                 gc.fillText("PUNKTE: " + model.getPoints(), 30, Main.HEIGTH - 70);
                 if (model.isLifesGlow()) {
                     gc.setFill(Color.WHITE);
@@ -173,15 +178,15 @@ public class Graphics {
                     gc.drawImage(explosionImage, explosion.getPosX(), explosion.getPosY(), 30, 30);
                 }
             }
-            zeichneMenuScreen(loadScreen, playerSpaceshipImage, font, 100);
+            zeichneMenuScreen(loadScreen, playerSpaceshipImage, fontIN60);
         }
     }
 
-    private void zeichneMenuScreen(Image loadScreen, Image playerSpaceshipImage, String font, double textSize) {
+    private void zeichneMenuScreen(Image loadScreen, Image playerSpaceshipImage, Font font) {
         if (model.getGameStatus() == 10 || model.getGameStatus() == 11) {
             gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
             gc.setFill(Color.GOLD);
-            gc.setFont(Font.font(font, FontWeight.BOLD, textSize));
+            gc.setFont(font);
             for (int i = 0; i < this.model.getMenuPoints().size(); i++) {
                 gc.fillText(this.model.getMenuPoints().get(i), menuBorderInput, Main.HEIGTH / 2 + 100 + i * 80);
             }
@@ -189,12 +194,12 @@ public class Graphics {
         }
     }
 
-    private void loadScreen(Image loadScreen, String font) {
+    private void loadScreen(Image loadScreen, Font font) {
         gc.drawImage(loadScreen, 0, 0, Main.WIDTH, Main.HEIGTH);
         gc.setFill(Color.GOLD);
-        gc.setFont(Font.font(font, FontWeight.BOLD, 100));
+        gc.setFont(font);
         gc.fillText("LEIFS SPACE INVADERS", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 50);
-        gc.fillText("PRESS ANY KEY TO START", Main.WIDTH / 2 - 460, Main.HEIGTH / 2 + 150);
+        gc.fillText("PRESS ANY KEY TO START", Main.WIDTH / 2 - 420, Main.HEIGTH / 2 + 150);
     }
 
 
