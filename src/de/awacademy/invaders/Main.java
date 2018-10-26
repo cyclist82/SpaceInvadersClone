@@ -14,50 +14,51 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
-    public static final double WIDTH = 1920;
-    public static final double HEIGTH = 1080;
-    public final Font fontIN60 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/subway.ttf"), 60);
-    public final Font fontIN120 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/subway.ttf"), 120);
-    public final Font fontSW60 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/starwars.ttf"), 60);
-    public final Font fontSW120 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/starwars.ttf"), 120);
+	public static final double WIDTH = 1920;
+	public static final double HEIGTH = 1080;
+	public final Font fontIN60 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/subway.ttf"), 60);
+	public final Font fontIN120 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/subway.ttf"), 120);
+	public final Font fontSW60 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/starwars.ttf"), 50);
+	public final Font fontSW120 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/starwars.ttf"), 100);
 
-    private Timer timer;
+	private Timer timer;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+	@Override
+	public void start(Stage primaryStage) throws Exception {
 
 
-        javafx.scene.canvas.Canvas canvas = new Canvas(WIDTH, HEIGTH);
-        Group group = new Group();
-        group.getChildren().addAll(canvas);
+		javafx.scene.canvas.Canvas canvas = new Canvas(WIDTH, HEIGTH);
+		Group group = new Group();
+		group.getChildren().addAll(canvas);
 
-        // Scene
-        Scene scene = new Scene(group);
-        primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.show();
-        primaryStage.setTitle("Leifs Space Invaders");
-        primaryStage.setFullScreen(true);
+		// Scene
+		Scene scene = new Scene(group);
+		primaryStage.setScene(scene);
+		primaryStage.initStyle(StageStyle.TRANSPARENT);
+		primaryStage.show();
+		primaryStage.setTitle("Leifs Space Invaders");
 
-        Model model = new Model();
-        Graphics graphics = new Graphics(model, canvas.getGraphicsContext2D());
-        timer = new Timer(model, graphics);
+		primaryStage.setFullScreen(true);
 
-        // InputHandler
-        InputHandler inputHandler = new InputHandler(model);
+		Model model = new Model();
+		Graphics graphics = new Graphics(model, canvas.getGraphicsContext2D());
+		timer = new Timer(model, graphics);
 
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                inputHandler.onKeyPressed(event);
-            }
-        });
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                inputHandler.onKeyReleased(event);
-            }
-        });
+		// InputHandler
+		InputHandler inputHandler = new InputHandler(model);
+
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				inputHandler.onKeyPressed(event);
+			}
+		});
+		scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				inputHandler.onKeyReleased(event);
+			}
+		});
 
 //        canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
 //            @Override
@@ -65,13 +66,13 @@ public class Main extends Application {
 //                inputHandler.onClick(event);
 //            }
 //        });
-        // Timer starten
-        timer.start();
-    }
+		// Timer starten
+		timer.start();
+	}
 
-    @Override
-    public void stop() throws Exception {
-        timer.stop();
-        super.stop();
-    }
+	@Override
+	public void stop() throws Exception {
+		timer.stop();
+		super.stop();
+	}
 }
