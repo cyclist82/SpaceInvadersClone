@@ -35,9 +35,6 @@ public class Graphics {
     private final Font fontSW60 = meins.fontSW60;
     private final Font fontSW120 = meins.fontSW120;
 
-//    private final String fontSW = "STARWARS";
-//    private final String font = "Digital-7";
-
     public Graphics(Model model, GraphicsContext gc) throws FileNotFoundException {
         this.model = model;
         this.gc = gc;
