@@ -194,7 +194,7 @@ public class Model {
 		if (gameStatus == 11) {
 			menuPoints.clear();
 			menuPoints.add("SPACE INVADERS");
-			menuPoints.add("STAR WARS");
+			menuPoints.add("WAR STAR");
 			menuPoints.add("BACK");
 			menuSteuerung();
 			if (enterKey && menuPoint == 0 && lastMenuChange + 200 < counter) {

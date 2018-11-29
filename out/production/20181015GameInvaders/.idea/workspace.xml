@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="20181015GameInvaders:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3a3ff0ff-b398-4fd6-bf6a-a45d42e233a1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/images/Jäger.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/WSMenuBackground.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/MilleniumFalcon.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/Falcon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/SpaceInvadersMenuBackground.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/StarWarsGameBackground.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/WSGameBackground.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/StarWarsMenuBackground.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/TieFighter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/Todesstern.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/SternenTod.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/fonts/starwars.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/resources/fonts/ws.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/awacademy/invaders/Graphics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/awacademy/invaders/Graphics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/de/awacademy/invaders/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/de/awacademy/invaders/Main.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images/SpaceInvadersBackground.jpg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images/SpaceShipPlayer.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images/WSMenuBackground.jpg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images/Jäger.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images/SternenTod.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images/EnemySpaceship.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images/Explosion.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images/Falcon.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images/SpaceInvadersMenuBackground.jpg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>glow</find>
+      <find>final</find>
+      <find>finalEnemyD</find>
+      <find>clea</find>
+      <find>clear</find>
+      <find>space</find>
+      <find>spaceK</find>
+      <find>gamestatus</find>
+      <find>fireL</find>
+      <find>counter</find>
+      <find>died</find>
+      <find>createmu</find>
+      <find>mul</find>
+      <find>multi</find>
+      <find>80</find>
+      <find>50</find>
+      <find>fontSW</find>
+      <find>loadsc</find>
+      <find>loadSc</find>
+      <find>SW50</find>
+      <find>150</find>
+      <find>font</find>
+      <find>them</find>
+      <find>fontIN</find>
+      <find>update</find>
+      <find>ga</find>
+      <find>menu</find>
+      <find>player</find>
+      <find>gamest</find>
+      <find>star</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>LinkedList</replace>
+      <replace>Star Jedi Outline</replace>
+      <replace>model.getFinalEnemies().get(i)</replace>
+      <replace>2.0</replace>
+      <replace>finalEnemyLaser2Speed</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/de/awacademy/Main.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/Model.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/Timer.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/model/Explosion.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/model/SpaceshipEnemy.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/InputHandler.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/model/FinalEnemy.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/model/SpaceshipPlayer.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/model/Laser.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/Sounds.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/Main.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/model/Model.java" />
+        <option value="$PROJECT_DIR$/src/de/awacademy/invaders/Graphics.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="880" />
+    <option name="y" value="7" />
+    <option name="width" value="1024" />
+    <option name="height" value="1038" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="de" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="de" type="462c0819:PsiDirectoryNode" />
+              <item name="awacademy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="de" type="462c0819:PsiDirectoryNode" />
+              <item name="awacademy" type="462c0819:PsiDirectoryNode" />
+              <item name="invaders" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="audio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="20181015GameInvaders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="20181015GameInvaders" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="fonts" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="20181015gameinvaders" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543421277014" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../webblogGithub" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\leifl\IntellyJ Projects\Academy Woche 3\20181015GameInvaders\images" />
+      <recent name="C:\Users\leifl\IntellyJ Projects\Academy Woche3\20181015GameInvaders\resources\fonts" />
+      <recent name="C:\Users\leifl\IntellyJ Projects\Academy Woche3\20181015GameInvaders\resources" />
+      <recent name="C:\Users\leifl\IntellyJ Projects\Academy Woche3\20181015GameInvaders\src\de\awacademy\invaders\model\sounds" />
+      <recent name="C:\Users\leifl\IntellyJ Projects\Academy Woche3\20181015GameInvaders\src\de\awacademy\invaders\model\images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\leifl\IntellyJ Projects\Academy Woche3\20181015GameInvaders\resources\fonts" />
+      <recent name="C:\Users\leifl\IntellyJ Projects\Academy Woche3\20181015GameInvaders\fonts" />
+      <recent name="C:\Users\leifl\IntellyJ Projects\Academy Woche3\20181015GameInvaders\audio" />
+      <recent name="C:\Users\leifl\IntellyJ Projects\Academy Woche3\20181015GameInvaders\images" />
+      <recent name="C:\Users\leifl\IntellyJ Projects\Academy Woche3\20181015GameInvaders\src\de\awacademy\invaders\model\sounds" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.awacademy.invaders.Main" />
+      <module name="20181015GameInvaders" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.awacademy.invaders.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a3ff0ff-b398-4fd6-bf6a-a45d42e233a1" name="Default Changelist" comment="" />
+      <created>1539609763086</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1539609763086</updated>
+      <workItem from="1539609764353" duration="1398000" />
+      <workItem from="1539611204274" duration="5478000" />
+      <workItem from="1539619901796" duration="6082000" />
+      <workItem from="1539626116375" duration="4152000" />
+      <workItem from="1539672503099" duration="40001000" />
+      <workItem from="1539719577877" duration="42000" />
+      <workItem from="1539719651712" duration="2403000" />
+      <workItem from="1539757616781" duration="18861000" />
+      <workItem from="1539779923016" duration="5722000" />
+      <workItem from="1539790496189" duration="15525000" />
+      <workItem from="1539832871830" duration="802000" />
+      <workItem from="1539843756940" duration="19836000" />
+      <workItem from="1539867085553" duration="444000" />
+      <workItem from="1539867635322" duration="24000" />
+      <workItem from="1539868055271" duration="744000" />
+      <workItem from="1539869596095" duration="1241000" />
+      <workItem from="1539872042231" duration="826000" />
+      <workItem from="1539932096953" duration="36000" />
+      <workItem from="1539932347161" duration="4099000" />
+      <workItem from="1539947420916" duration="950000" />
+      <workItem from="1539953200253" duration="1990000" />
+      <workItem from="1539966131582" duration="11691000" />
+      <workItem from="1540071984273" duration="1998000" />
+      <workItem from="1540128598996" duration="7000" />
+      <workItem from="1540130221780" duration="428000" />
+      <workItem from="1540400069388" duration="1997000" />
+      <workItem from="1540553374025" duration="918000" />
+      <workItem from="1540556099358" duration="1231000" />
+      <workItem from="1540579797913" duration="949000" />
+      <workItem from="1541702877518" duration="266000" />
+      <workItem from="1542273523144" duration="907000" />
+      <workItem from="1543224076290" duration="240000" />
+      <workItem from="1543303273835" duration="355000" />
+      <workItem from="1543312878016" duration="888000" />
+      <workItem from="1543391406544" duration="2413000" />
+      <workItem from="1543408837474" duration="1049000" />
+    </task>
+    <task id="LOCAL-00001" summary="SpaceShipPlayer funktioniert:-)">
+      <created>1539621455150</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1539621455150</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Enemy und Player als PNG Freigestellt">
+      <created>1539621797947</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1539621797947</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Enemy und Player als PNG Freigestellt">
+      <created>1539621818992</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1539621818992</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Laser werden schon geschossen....">
+      <created>1539626000707</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1539626000707</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Auch die Gegner Feuern bereits">
+      <created>1539630023735</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1539630023736</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Auch die Gegner Feuern bereits">
+      <created>1539672662286</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1539672662286</updated>
+    </task>
+    <task id="LOCAL-00007" summary="PlayerLaser veschwinden (ArrayList.removeif)">
+      <created>1539675961063</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1539675961064</updated>
+    </task>
+    <task id="LOCAL-00008" summary="PlayerLaserTreffen und Gegner verschwinden&#10;&#10;Grafiken Aktualisiert">
+      <created>1539677573766</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1539677573766</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Gegnereische Laser richten Schaden an">
+      <created>1539679698273</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1539679698273</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Player Laser Bugfix">
+      <created>1539681313149</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1539681313149</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Explosionen dabei">
+      <created>1539684722980</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1539684722980</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Explosionen dabei, kleine Bugfixes">
+      <created>1539687351541</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1539687351541</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Cursoreingabe durch mehrere Tasten ermöglicht">
+      <created>1539691079757</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1539691079757</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Spieler Laser Feuerrate begrenzt">
+      <created>1539691890211</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1539691890211</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Gegner Bewegung wurde verbessert">
+      <created>1539692311003</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1539692311003</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Sounds gehen">
+      <created>1539697800264</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1539697800264</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Hintergrund hinzugefügt, Musik geht...kleine Bugfixes">
+      <created>1539701926744</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1539701926744</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Einige Fixes und Verbesserungen...Game Modi langsam erweitern">
+      <created>1539715008135</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1539715008135</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Mehrere Bugfixes">
+      <created>1539717850592</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1539717850592</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Start Menu zu implementieren">
+      <created>1539761557796</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1539761557796</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Raumschiff zum Menü hinzugefügt">
+      <created>1539764018670</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1539764018670</updated>
+    </task>
+    <task id="LOCAL-00022" summary="System Exit funktioniert">
+      <created>1539765397520</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1539765397520</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Menü funktioniert...SW Theme muss implementiert werden">
+      <created>1539768654590</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1539768654590</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Menü funktioniert...SW Theme muss implementiert werden">
+      <created>1539768668585</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1539768668585</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Themes sind Implementiert">
+      <created>1539774157561</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1539774157561</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Themes sind Implementiert">
+      <created>1539779642318</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1539779642318</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Final Enemy bewegt sich">
+      <created>1539785448235</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1539785448235</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Final Enemy bewegt sich">
+      <created>1539785548418</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1539785548418</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Final Enemy schießt...TODO wenn er getroffen wird richtig implementieren">
+      <created>1539798503963</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1539798503963</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Final Enemy schießt...TODO wenn er getroffen wird richtig implementieren">
+      <created>1539801691267</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1539801691267</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Final Enemy schießt...TODO wenn er getroffen wird richtig implementieren">
+      <created>1539806131538</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1539806131538</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Final Enemy funktioniert...TODO Super Laser+evtl Font implementierung">
+      <created>1539850121823</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1539850121823</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Mega Explosionen funktionieren...TODO, maybe super Laser">
+      <created>1539858612816</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1539858612816</updated>
+    </task>
+    <task id="LOCAL-00034" summary="BugFixes...Golden Master">
+      <created>1539866008973</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1539866008973</updated>
+    </task>
+    <task id="LOCAL-00035" summary="BugFixes...Golden Master">
+      <created>1539866768315</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1539866768316</updated>
+    </task>
+    <task id="LOCAL-00036" summary="BugFixes...Golden Master">
+      <created>1539868779985</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1539868779985</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Version zur Präsentation">
+      <created>1539944459557</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1539944459557</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Bilder umbenannt">
+      <created>1539945434852</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1539945434852</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Bilder umbenannt">
+      <created>1539947093631</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1539947093631</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Pfade angepasst für JAR">
+      <created>1539955067438</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1539955067438</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Endlich die Schriften...werden nun in der Main geladen...damit geht es...">
+      <created>1540072969846</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1540072969846</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Endlich die Schriften...werden nun in der Main geladen...damit geht es...">
+      <created>1540072999998</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1540072999998</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Läuft auch auf dem Mac Fullscreen...iMac Tastatur macht Probs, Tasten werden nicht mehr false???">
+      <created>1540076217596</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1540076217596</updated>
+    </task>
+    <task id="LOCAL-00044" summary="UPDATE">
+      <created>1540553393916</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1540553393916</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="155993000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15031983" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3286334" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27193934" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.329718" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3286334" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Armory" order="1" weight="0.32942432" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="right" id="Maven Projects" order="9" />
+      <window_info anchor="right" id="Maven" order="10" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26308724" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32907802" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32907802" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32907802" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Armory" order="8" weight="0.3295302" />
+      <window_info anchor="right" id="Maven Projects" order="9" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Explosionen dabei" />
+    <MESSAGE value="Explosionen dabei, kleine Bugfixes" />
+    <MESSAGE value="Cursoreingabe durch mehrere Tasten ermöglicht" />
+    <MESSAGE value="Spieler Laser Feuerrate begrenzt" />
+    <MESSAGE value="Gegner Bewegung wurde verbessert" />
+    <MESSAGE value="Sounds gehen" />
+    <MESSAGE value="Hintergrund hinzugefügt, Musik geht...kleine Bugfixes" />
+    <MESSAGE value="Einige Fixes und Verbesserungen...Game Modi langsam erweitern" />
+    <MESSAGE value="Mehrere Bugfixes" />
+    <MESSAGE value="Start Menu zu implementieren" />
+    <MESSAGE value="Raumschiff zum Menü hinzugefügt" />
+    <MESSAGE value="System Exit funktioniert" />
+    <MESSAGE value="Menü funktioniert...SW Theme muss implementiert werden" />
+    <MESSAGE value="Themes sind Implementiert" />
+    <MESSAGE value="Final Enemy bewegt sich" />
+    <MESSAGE value="Final Enemy schießt...TODO wenn er getroffen wird richtig implementieren" />
+    <MESSAGE value="Final Enemy funktioniert...TODO Super Laser+evtl Font implementierung" />
+    <MESSAGE value="Mega Explosionen funktionieren...TODO, maybe super Laser" />
+    <MESSAGE value="BugFixes...Golden Master" />
+    <MESSAGE value="Version zur Präsentation" />
+    <MESSAGE value="Bilder umbenannt" />
+    <MESSAGE value="Pfade angepasst für JAR" />
+    <MESSAGE value="Endlich die Schriften...werden nun in der Main geladen...damit geht es..." />
+    <MESSAGE value="Läuft auch auf dem Mac Fullscreen...iMac Tastatur macht Probs, Tasten werden nicht mehr false???" />
+    <MESSAGE value="UPDATE" />
+    <option name="LAST_COMMIT_MESSAGE" value="UPDATE" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.graphics/javafx/scene/image/Image.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="1098" selection-start-line="1098" selection-end-line="1098" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/util/function/Predicate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="48" column="12" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="843" selection-start-line="843" selection-end-line="843" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/images/Exposion.png" />
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/images/EnemySpaceship.jpg" />
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/images/SpaceShipPlayer.jpg" />
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/images/EnemySpaceship.png" />
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/images/Explosion.png" />
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.graphics/com/sun/javafx/application/LauncherImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1471">
+          <caret line="918" selection-start-line="918" selection-end-line="918" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/images/SpaceInvadersMenuBackground.jpg" />
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/images/SpaceInvadersBackground.jpg" />
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/Timer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/fonts/Starjout.ttf" />
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/images/Todesstern.png" />
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.graphics/com/sun/glass/ui/win/WinApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="174" selection-start-line="174" selection-end-line="174" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/fonts/rampage.ttf" />
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/SpaceshipEnemy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/SpaceshipPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/FinalEnemy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3825">
+          <caret line="233" column="29" selection-start-line="233" selection-start-column="29" selection-end-line="233" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/Laser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/Sounds.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="121" selection-start-line="11" selection-start-column="121" selection-end-line="11" selection-end-column="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/model/Explosion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/InputHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/fonts/ws.ttf">
+      <provider selected="true" editor-type-id="fontseditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/Graphics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2499">
+          <caret line="154" column="44" selection-start-line="154" selection-start-column="44" selection-end-line="154" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/WSGameBackground.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/WSMenuBackground.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/SpaceInvadersBackground.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/Falcon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/Explosion.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/EnemySpaceship.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/Jäger.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/SpaceInvadersMenuBackground.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/SpaceShipPlayer.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/SternenTod.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/awacademy/invaders/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>20181015GameInvaders:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>20181015GameInvaders</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -5,12 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.LinkedList;
 
 public class Graphics {
@@ -23,12 +19,12 @@ public class Graphics {
     private Image loadScreen = new Image(getClass().getResource("/images/SpaceInvadersMenuBackground.jpg").toString());
     private Image background = new Image(getClass().getResource("/images/SpaceInvadersBackground.jpg").toString());
 
-    private Image enemySpaceshipImageSW = new Image(getClass().getResource("/images/TieFighter.png").toString());
-    private Image playerSpaceshipImageSW = new Image(getClass().getResource("/images/MilleniumFalcon.png").toString());
-    private Image finalEnemySW = new Image(getClass().getResource("/images/Todesstern.png").toString());
-    private Image finalEnemyInvaders = new Image(getClass().getResource("/images/Todesstern.png").toString());
-    private Image loadScreenSW = new Image(getClass().getResource("/images/StarWarsMenuBackground.jpg").toString());
-    private Image backgroundSW = new Image(getClass().getResource("/images/StarWarsGameBackground.jpg").toString());
+    private Image enemySpaceshipImageSW = new Image(getClass().getResource("/images/Jäger.png").toString());
+    private Image playerSpaceshipImageSW = new Image(getClass().getResource("/images/Falcon.png").toString());
+    private Image finalEnemySW = new Image(getClass().getResource("/images/SternenTod.png").toString());
+    private Image finalEnemyInvaders = new Image(getClass().getResource("/images/SternenTod.png").toString());
+    private Image loadScreenSW = new Image(getClass().getResource("/images/WSMenuBackground.jpg").toString());
+    private Image backgroundSW = new Image(getClass().getResource("/images/WSGameBackground.jpg").toString());
 
 
     private final int menuBorderInput = 200;
@@ -75,13 +71,13 @@ public class Graphics {
                     gc.setFill(Color.GOLD);
                     gc.setFont(fontSW120);
                     gc.fillText("LEVEL " + this.model.getLevel() + " COMPLETE", Main.WIDTH / 2 - 600, Main.HEIGTH / 2);
-                    gc.fillText("YOU SAVED ALDERAAN", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
+                    gc.fillText("YOU SAVED ANDERAAN", Main.WIDTH / 2 - 600, Main.HEIGTH / 2 + 150);
                 }
                 if (model.getGameStatus() == 8) {
                     gc.setFill(Color.GOLD);
                     gc.setFont(fontSW120);
                     gc.fillText("GAME OVER", Main.WIDTH / 2 - 400, Main.HEIGTH / 2 + 150);
-                    gc.fillText("ALDERAAN IS LOST", Main.WIDTH / 2 - 350, Main.HEIGTH / 2 + 300);
+                    gc.fillText("ANDERAAN IS LOST", Main.WIDTH / 2 - 350, Main.HEIGTH / 2 + 300);
                 }
                 if (model.isPointGlow()) {
                     gc.setFill(Color.WHITE);
@@ -106,7 +102,7 @@ public class Graphics {
                     } else {
                         gc.setFill(Color.RED);
                     }
-                    gc.fillText("TODESSTERN " + (i + 1) + ": " + model.getFinalEnemies().get(i).getLives(), Main.WIDTH - scoreRightInbound, 50 + i * 100);
+                    gc.fillText("STERNENTOD " + (i + 1) + ": " + model.getFinalEnemies().get(i).getLives(), Main.WIDTH - scoreRightInbound, 50 + i * 100);
                 }
                 gc.drawImage(playerSpaceshipImageSW, model.getSpaceshipPlayer().getPosX(), model.getSpaceshipPlayer().getPosY(), model.getSpaceshipPlayer().getSizeX(), model.getSpaceshipPlayer().getSizeY());
                 for (Explosion explosion : model.getExplosions()) {

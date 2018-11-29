@@ -68,6 +68,4 @@ public class InputHandler {
             this.model.setnKey(false);
         }
     }
-    //    public void onClick(MouseEvent event) {
-//    }
 }

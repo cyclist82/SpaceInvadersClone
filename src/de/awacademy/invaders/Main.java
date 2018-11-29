@@ -7,7 +7,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -18,8 +17,8 @@ public class Main extends Application {
 	public static final double HEIGTH = 1080;
 	public final Font fontIN60 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/subway.ttf"), 60);
 	public final Font fontIN120 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/subway.ttf"), 120);
-	public final Font fontSW60 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/starwars.ttf"), 50);
-	public final Font fontSW120 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/starwars.ttf"), 100);
+	public final Font fontSW60 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/ws.ttf"), 50);
+	public final Font fontSW120 = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/ws.ttf"), 100);
 
 	private Timer timer;
 
@@ -60,13 +59,6 @@ public class Main extends Application {
 			}
 		});
 
-//        canvas.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                inputHandler.onClick(event);
-//            }
-//        });
-		// Timer starten
 		timer.start();
 	}
 
